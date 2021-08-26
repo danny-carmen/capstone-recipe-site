@@ -1,0 +1,20 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./navbar.scss";
+@import "./homepage.scss";
+@import "./recipe-card.scss";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}

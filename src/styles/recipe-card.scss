@@ -1,0 +1,59 @@
+.recipe-card {
+  height: 480px;
+  width: 360px;
+
+  font-family: "Urbanist", sans-serif;
+
+  box-shadow: 0px 0px 15px 0px #adadad;
+
+  display: grid;
+  grid-template-columns: [start] 1fr [middle] 1fr [end];
+  grid-template-rows: [img-t] 360px [img-b title-t] 3fr [title-b info1-t] 2fr [info1-b info2-t] 2fr [info2-b];
+
+  * {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+  img {
+    grid-column: start / end;
+    grid-row: img-t / img-b;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 360px;
+    height: 360px;
+  }
+
+  &__title {
+    grid-column: start / end;
+    grid-row: title-t / title-b;
+    align-self: center;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  &__servings {
+    grid-column: start / middle;
+    grid-row: info1-t / info1-b;
+    align-self: center;
+  }
+
+  &__rating {
+    grid-column: start / middle;
+    grid-row: info2-t / info2-b;
+    align-self: center;
+  }
+
+  &__active-time {
+    grid-column: middle / end;
+    grid-row: info1-t / info1-b;
+    align-self: center;
+    justify-self: end;
+  }
+
+  &__total-time {
+    grid-column: middle / end;
+    grid-row: info2-t / info2-b;
+    align-self: center;
+    justify-self: end;
+  }
+}

@@ -1,0 +1,17 @@
+.home-page {
+  height: 100%;
+}
+
+.recipe-board-wrapper {
+  padding-top: 100px;
+  display: grid;
+  justify-content: center;
+}
+
+.recipe-board {
+  align-content: center;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
