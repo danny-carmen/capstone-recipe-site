@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import lasagna from "../images/lasagna.jpg";
 
 import RecipeBoard from "./recipe-board";
+import SearchBar from "./search-bar";
 
 export default class HomePage extends Component {
   constructor() {
@@ -188,7 +189,8 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <div className="recipe-board-wrapper">
+      <div>
+        <SearchBar />
         <RecipeBoard data={this.state.boardItems} />
       </div>
     );

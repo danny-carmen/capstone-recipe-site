@@ -6,19 +6,15 @@ export default class NavBar extends Component {
     return (
       <div>
         <div className="nav-bar">
-          <NavLink exact to="/explore">
-            Explore
+          <NavLink className="nav-bar__hamburger" exact to="/explore">
+            Hamburger Menu
           </NavLink>
 
-          <div>Logo</div>
-          <div className="nav-bar__icon">
-            <NavLink exact to="/search">
-              Search
-            </NavLink>
-            <NavLink exact to="/account">
-              Profile
-            </NavLink>
-          </div>
+          <div className="nav-bar__logo">Tastable</div>
+
+          <NavLink className="nav-bar__account" exact to="/account">
+            Account
+          </NavLink>
         </div>
       </div>
     );

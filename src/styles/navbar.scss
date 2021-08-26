@@ -1,11 +1,30 @@
 .nav-bar {
-  display: flex;
-  justify-content: space-between;
-  background-color: lightblue;
+  display: grid;
+  grid-template-columns: [hamburger-s] 1fr [hamburger-e logo-s] 1fr [logo-e account-s] 1fr [account-e];
+  background-color: $primary-color;
   height: 36px;
-  align-items: center;
+
   padding: 10px;
-  &__icon {
-    display: flex;
+  color: $light-text;
+  font-size: 36px;
+
+  * {
+    color: $light-text;
+  }
+
+  &__hamburger {
+    padding-left: 10px;
+    grid-column: hamburger-s/hamburger-e;
+  }
+
+  &__logo {
+    grid-column: logo-s/logo-e;
+    justify-self: center;
+  }
+
+  &__account {
+    grid-column: account-s/account-e;
+    justify-self: end;
+    padding-right: 10px;
   }
 }
