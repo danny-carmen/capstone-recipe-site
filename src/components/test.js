@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import RecipeCard from "./recipe-card";
+import RecipePage from "./recipe-page";
 
 export default class Test extends Component {
   render() {
     return (
       <div>
-        <RecipeCard />
+        <RecipePage />
       </div>
     );
   }

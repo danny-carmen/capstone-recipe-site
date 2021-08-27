@@ -3,6 +3,7 @@
 }
 
 .recipe-board-wrapper {
+  padding-top: 228px;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -15,5 +16,5 @@
   align-items: center;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 360px);
-  grid-gap: 1.5rem;
+  grid-gap: 3rem;
 }

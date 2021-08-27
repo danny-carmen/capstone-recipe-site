@@ -189,7 +189,7 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="relative">
         <SearchBar />
         <RecipeBoard data={this.state.boardItems} />
       </div>
