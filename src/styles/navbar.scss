@@ -3,10 +3,10 @@
   display: grid;
   width: 100vw;
   grid-template-columns: [hamburger-s] 1fr [hamburger-e logo-s] 1fr [logo-e account-s] 1fr [account-e];
-  background-color: $primary-color;
-  height: 48px;
 
-  padding: 10px;
+  background-color: $primary-color;
+  height: 68px;
+
   color: $light-text;
   font-size: 36px;
 
@@ -15,8 +15,10 @@
   }
 
   &__hamburger {
-    padding-left: 10px;
+    padding-left: 20px;
     grid-column: hamburger-s/hamburger-e;
+
+    align-self: center;
   }
 
   &__logo {
@@ -28,12 +30,28 @@
   &__icon {
     font-size: 24px;
     color: $light-text;
-    padding: 10px;
   }
 
   &__account {
     grid-column: account-s/account-e;
     justify-self: end;
-    padding-right: 50px;
+    padding-right: 20px;
+  }
+}
+
+.account-menu {
+  position: fixed;
+  top: 68px;
+  width: 80px;
+  height: 100px;
+  background-color: black;
+  transition: all 0.2s ease-in-out;
+
+  &__closed {
+    right: -80px;
+  }
+
+  &__open {
+    right: 0px;
   }
 }

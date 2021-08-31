@@ -181,6 +181,15 @@ export default class HomePage extends Component {
         image: lasagna,
         rating: "4",
       },
+      {
+        id: 19,
+        title: "Lasagna",
+        servings: "4",
+        activeTime: "40 min",
+        totalTime: "60 min",
+        image: lasagna,
+        rating: "4",
+      },
     ];
     this.state = {
       boardItems: boardItemsObject,

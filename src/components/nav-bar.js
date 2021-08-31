@@ -5,6 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default class NavBar extends Component {
+  handleAccountClick() {
+    document
+      .getElementById("account-menu")
+      .classList.toggle("account-menu__closed");
+    document
+      .getElementById("account-menu")
+      .classList.toggle("account-menu__open");
+  }
   render() {
     return (
       <div>
@@ -17,9 +25,14 @@ export default class NavBar extends Component {
             <div>Tastable</div>
           </NavLink>
 
-          <NavLink className="nav-bar__account" exact to="/account">
+          <a
+            onClick={this.handleAccountClick}
+            className="nav-bar__account"
+            exact
+            to="/account"
+          >
             <FontAwesomeIcon className="nav-bar__icon" icon={faUser} />
-          </NavLink>
+          </a>
         </div>
       </div>
     );

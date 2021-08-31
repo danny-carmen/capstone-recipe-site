@@ -3,16 +3,20 @@ import Rating from "./rating";
 import RecipeTime from "./recipe-time";
 import Servings from "./servings";
 import RecipeTitle from "./title";
-import lasagna from "../images/lasagna.jpg";
+
 import { Link } from "react-router-dom";
 
 export default class RecipeCard extends Component {
-  componentDidMount() {
-    console.log(this.props.boardItem);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      boardItem: this.props.boardItem,
+    };
   }
   render() {
     const { id, image, servings, title, rating, activeTime, totalTime } =
-      this.props.boardItem;
+      this.state.boardItem;
 
     return (
       <Link className="recipe-card__link" to={`/recipes/${id}`}>

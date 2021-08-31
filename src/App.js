@@ -3,7 +3,7 @@ import NavBar from "./components/nav-bar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Explore from "./components/explore";
 
-import Account from "./components/account";
+import AccountMenu from "./components/account-menu";
 import Test from "./components/test";
 import RecipePage from "./components/recipe-page";
 
@@ -12,6 +12,7 @@ function App() {
     <div className="App">
       <Router>
         <NavBar className="relative" />
+
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/explore" component={Explore} />
@@ -19,9 +20,10 @@ function App() {
             path="/recipes/:slug"
             render={(props) => <RecipePage {...props} />}
           />
-          <Route path="/account" component={Account} />
+
           <Route path="/test" component={Test} />
         </Switch>
+        <AccountMenu className="relative" />
       </Router>
     </div>
   );
