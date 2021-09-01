@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import RecipePage from "./recipe-page";
+import FilterFields from "./filter-fields";
 
 export default class Test extends Component {
   render() {
     return (
-      <div>
-        <RecipePage />
+      <div className="test-field">
+        <FilterFields />
       </div>
     );
   }

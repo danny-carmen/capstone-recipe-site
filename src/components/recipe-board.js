@@ -9,7 +9,7 @@ export default class RecipeBoard extends Component {
 
     return (
       <div className="recipe-board-wrapper">
-        <div className="spacer250"></div>
+        <div className="spacer-search-bar"></div>
         <div className="recipe-board-grid">
           <div className="recipe-board">{boardItems}</div>
           <div className="spacer50"></div>

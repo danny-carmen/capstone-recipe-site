@@ -1,0 +1,39 @@
+.filter-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100vw;
+  height: 56px;
+  padding-left: 10px;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.filter-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+
+  outline: transparent;
+  border: transparent;
+
+  height: 36px;
+  width: max-content;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  font-size: 20px;
+  color: white;
+
+  &__inactive {
+    background-color: rgb(168, 168, 168);
+  }
+
+  &__active {
+    background-color: $primary-color;
+  }
+}

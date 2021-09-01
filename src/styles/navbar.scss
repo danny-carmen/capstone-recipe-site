@@ -15,9 +15,12 @@
   }
 
   &__hamburger {
-    padding-left: 20px;
+    margin-left: 20px;
     grid-column: hamburger-s/hamburger-e;
 
+    outline: transparent;
+    background-color: transparent;
+    border: none;
     align-self: center;
   }
 
@@ -25,17 +28,43 @@
     grid-column: logo-s/logo-e;
     justify-self: center;
     text-decoration: none;
-  }
-
-  &__icon {
-    font-size: 24px;
-    color: $light-text;
+    align-self: center;
   }
 
   &__account {
     grid-column: account-s/account-e;
     justify-self: end;
-    padding-right: 20px;
+    margin-right: 20px;
+    outline: transparent;
+    background-color: transparent;
+    border: none;
+    align-self: center;
+  }
+}
+
+.nav-bar__icon-border {
+  border-radius: 8px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  &__unselected {
+    background-color: $primary-color;
+    * {
+      font-size: 30px;
+      color: $light-text;
+    }
+  }
+
+  &__selected {
+    background-color: $light-text;
+    * {
+      color: $primary-color;
+      font-size: 30px;
+    }
   }
 }
 
@@ -53,5 +82,22 @@
 
   &__open {
     right: 0px;
+  }
+}
+
+.explore-menu {
+  position: fixed;
+  top: 68px;
+  width: 80px;
+  height: 100px;
+  background-color: black;
+  transition: all 0.2s ease-in-out;
+
+  &__closed {
+    left: -80px;
+  }
+
+  &__open {
+    left: 0px;
   }
 }

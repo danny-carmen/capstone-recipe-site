@@ -20,7 +20,7 @@ export default class HomePage extends Component {
         rating: "4",
       },
       {
-        id: 1,
+        id: 43,
         title: "Lasagna",
         servings: "4",
         activeTime: "40 min",
