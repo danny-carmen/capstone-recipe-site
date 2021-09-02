@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class FilterFieldActiveTime extends Component {
+export default class FilterFieldNumberIngredients extends Component {
   constructor() {
     super();
 
@@ -12,7 +12,7 @@ export default class FilterFieldActiveTime extends Component {
   }
 
   handleClick = (e) => {
-    this.props.handleFieldClick(e.currentTarget, "activeTimeActive");
+    this.props.handleFieldClick(e.currentTarget, "numberIngredientsActive");
   };
 
   render() {
@@ -21,7 +21,11 @@ export default class FilterFieldActiveTime extends Component {
         className="filter-field filter-field__inactive filter-field__servings"
         onClick={this.handleClick}
       >
-        Active Time: MIN - MAX
+        <div>Ingredient Quantity</div>
+        <div>
+          <input type="text" placeholder="Min" /> min. -{" "}
+          <input type="text" placeholder="Max" /> min.
+        </div>
       </div>
     );
   }

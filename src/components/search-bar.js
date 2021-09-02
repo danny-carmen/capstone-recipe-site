@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDice, faSearch, faFilter } from "@fortawesome/free-solid-svg-icons";
-import FilterFields from "./filter-fields";
+import FilterFields from "./filter/filter-fields";
 
 export default class SearchBar extends Component {
   constructor() {

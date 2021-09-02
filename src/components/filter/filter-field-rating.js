@@ -21,7 +21,23 @@ export default class FilterFieldRating extends Component {
         className="filter-field filter-field__inactive filter-field__servings"
         onClick={this.handleClick}
       >
-        Rating
+        Rating:{" "}
+        {/*MIN:
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        - MAX:
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select> */}
       </div>
     );
   }

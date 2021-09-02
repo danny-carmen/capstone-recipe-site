@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class FilterFieldNumberIngredients extends Component {
+export default class FilterFieldWithIngredients extends Component {
   constructor() {
     super();
 
@@ -12,16 +12,16 @@ export default class FilterFieldNumberIngredients extends Component {
   }
 
   handleClick = (e) => {
-    this.props.handleFieldClick(e.currentTarget, "numberIngredientsActive");
+    this.props.handleFieldClick(e.currentTarget, "withIngredientsActive");
   };
 
   render() {
     return (
       <div
-        className="filter-field filter-field__inactive filter-field__numberIngredients"
+        className="filter-field filter-field__inactive filter-field__servings filter-field-dropdown"
         onClick={this.handleClick}
       >
-        Number of Ingredients: MIN - MAX
+        With Ingredients
       </div>
     );
   }

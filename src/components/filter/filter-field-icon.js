@@ -20,6 +20,7 @@ export default class FilterFieldIcon extends Component {
   render() {
     return (
       <div
+        id="filters-icon"
         className="filter-field filter-field__inactive filter-field__icon"
         onClick={this.handleClick}
       >

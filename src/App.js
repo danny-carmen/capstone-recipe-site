@@ -24,7 +24,6 @@ function App() {
           <Route path="/test" component={Test} />
         </Switch>
         <AccountMenu className="relative" />
-        <ExploreMenu />
       </Router>
     </div>
   );

@@ -2,31 +2,35 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  justify-self: center;
   gap: 8px;
-  width: 100vw;
-  height: 56px;
-  padding-left: 10px;
-  margin-top: 6px;
-  margin-bottom: 4px;
+  width: 95vw;
+  height: 86px;
+
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .filter-field {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
+
   border-radius: 8px;
 
   outline: transparent;
   border: transparent;
 
-  height: 36px;
+  height: 80px;
   width: max-content;
 
+  padding-top: 6px;
   padding-left: 10px;
   padding-right: 10px;
 
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 
   &__inactive {
@@ -35,5 +39,52 @@
 
   &__active {
     background-color: $primary-color;
+  }
+  select {
+    background-color: white;
+    outline: transparent;
+    border: transparent;
+    border-radius: 8px;
+    font-size: 18px;
+    color: $primary-color;
+    width: auto;
+    text-align: right;
+  }
+
+  option {
+    text-align: right;
+  }
+
+  input {
+    width: 40px;
+    font-size: 18px;
+    padding: 0;
+    text-align: center;
+    border-radius: 8px;
+    border: transparent;
+  }
+
+  input::placeholder {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+.filter-field-dropdown {
+  background-color: rgb(168, 168, 168);
+
+  .field-dropdown {
+    height: 0px;
+    display: none;
+    width: 100vw;
+  }
+}
+
+.filter-field-dropdown-active {
+  height: 100px;
+
+  .field-dropdown {
+    display: grid;
+    height: 400px;
   }
 }

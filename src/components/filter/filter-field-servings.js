@@ -21,7 +21,11 @@ export default class FilterFieldServings extends Component {
         className="filter-field filter-field__inactive filter-field__servings"
         onClick={this.handleClick}
       >
-        Servings: MIN - MAX
+        <div>Servings:</div>
+        <div>
+          <input type="text" placeholder="Min" /> min. -{" "}
+          <input type="text" placeholder="Max" /> min.
+        </div>
       </div>
     );
   }
