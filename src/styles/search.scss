@@ -9,7 +9,7 @@
   margin-top: 68px;
   background-color: white;
   grid-template-columns: 1fr;
-  grid-template-rows: [searchbar-t] auto [searchbar-b filter-t] auto [filter-b];
+  grid-template-rows: [searchbar-t] auto [searchbar-b];
 
   i {
     color: $light-text;
@@ -22,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 24px;
   }
 
   .search-bar-icon {
@@ -43,27 +44,27 @@
       color: $light-text;
     }
   }
-}
 
-.search-bar {
-  height: 60px;
-  border-radius: 35px;
-  border-color: $primary-color;
-  outline: $primary-color;
-  width: 600px;
-  margin-right: 10px;
-}
+  .search-bar {
+    height: 60px;
+    border-radius: 35px;
+    border-color: $primary-color;
+    outline: $primary-color;
+    width: 600px;
+    margin-right: 10px;
+  }
 
-input {
-  height: 30px;
-  border-color: $primary-color;
-  border-style: solid;
-  outline: $primary-color;
-  padding-left: 25px;
-  padding-right: 25px;
-  font-size: 24px;
-}
+  input {
+    height: 30px;
+    border-color: $primary-color;
+    border-style: solid;
+    outline: $primary-color;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 24px;
+  }
 
-input::placeholder {
-  font-size: 24px;
+  input::placeholder {
+    font-size: 24px;
+  }
 }

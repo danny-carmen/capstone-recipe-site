@@ -37,15 +37,6 @@ export default class NavBar extends Component {
     return (
       <div>
         <div className="nav-bar">
-          {/* <button
-            className="nav-bar__hamburger nav-bar__icon-border nav-bar__icon-border__unselected"
-            onClick={(e) => {
-              this.handleExploreClick(e);
-            }}
-          >
-            <FontAwesomeIcon className="nav-bar__icon" icon={faBars} />
-          </button> */}
-
           <Link className="nav-bar__logo" exact to="/">
             <div>Tastable</div>
           </Link>

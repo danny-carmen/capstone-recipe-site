@@ -2,9 +2,6 @@
   height: 480px;
   width: 360px;
   grid-row: recipe-t/recipe-b;
-  transition: all 0.2s ease-in-out;
-
-  box-shadow: 0px 0px 15px 0px #adadad;
 
   display: grid;
   grid-template-columns: [start] 1fr [middle] 1fr [end];
@@ -62,8 +59,14 @@
     align-self: center;
     justify-self: end;
   }
+
+  &__link {
+    box-shadow: 0px 0px 15px 0px #adadad;
+    transition: all 0.2s ease-in-out;
+  }
 }
 
-.recipe-card:hover {
+.recipe-card__link:hover,
+.recipe-card__link:focus {
   box-shadow: 0px 0px 30px 0px #6d6d6d;
 }

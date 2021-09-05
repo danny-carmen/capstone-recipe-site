@@ -1,7 +1,6 @@
 import HomePage from "./components/home-page";
 import NavBar from "./components/nav-bar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ExploreMenu from "./components/explore-menu";
 
 import AccountMenu from "./components/account-menu";
 import Test from "./components/test";
@@ -23,7 +22,7 @@ function App() {
 
           <Route path="/test" component={Test} />
         </Switch>
-        <AccountMenu className="relative" />
+        <AccountMenu loggedInStatus="LOGGED_IN" />
       </Router>
     </div>
   );

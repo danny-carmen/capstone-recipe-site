@@ -18,11 +18,10 @@ export default class SearchBar extends Component {
             <FontAwesomeIcon icon={faSearch} />
           </button>
 
-          <button className="search-bar-icon">
+          {/* <button className="search-bar-icon">
             <FontAwesomeIcon icon={faDice} />
-          </button>
+          </button> */}
         </div>
-        <FilterFields />
       </div>
     );
   }
