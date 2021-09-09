@@ -12,7 +12,13 @@ export default class AddRecipeModal extends Component {
     super(props);
 
     this.state = {
+      title: "",
+      description: "",
+      servings: "",
+      activeTime: "",
+
       ingredients: [],
+      steps: [],
     };
 
     this.addIngredient = this.addIngredient.bind(this);
