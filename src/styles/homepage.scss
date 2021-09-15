@@ -23,12 +23,12 @@
   display: grid;
   grid-template-rows: [topspacer-t] 50px [topspacer-b recipe-t] auto [recipe-b bottomspacer-t] auto [bottomspacer-b];
   overflow-y: scroll;
-  width: 100vw;
+  width: 99vw;
   justify-content: center;
 }
 .recipe-board {
   display: grid;
-  width: 90vw;
+  width: 95vw;
   align-items: center;
   justify-content: center;
   grid-row: recipe-t/recipe-b;

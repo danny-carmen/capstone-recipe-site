@@ -10,18 +10,6 @@ export default class NavBar extends Component {
     this.handleAccountClick = this.handleAccountClick.bind(this);
   }
 
-  // handleExploreClick(e) {
-  //   e.currentTarget.classList.toggle("nav-bar__icon-border__unselected");
-  //   e.currentTarget.classList.toggle("nav-bar__icon-border__selected");
-
-  //   document
-  //     .getElementById("explore-menu")
-  //     .classList.toggle("explore-menu__closed");
-  //   document
-  //     .getElementById("explore-menu")
-  //     .classList.toggle("explore-menu__open");
-  // }
-
   handleAccountClick(e) {
     e.currentTarget.classList.toggle("nav-bar__icon-border__unselected");
     e.currentTarget.classList.toggle("nav-bar__icon-border__selected");

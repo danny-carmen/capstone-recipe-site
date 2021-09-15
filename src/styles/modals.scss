@@ -102,12 +102,396 @@
   }
 }
 
-.modal-close-button {
-  background-color: transparent;
-  outline: none;
-  color: grey;
-  border: none;
+.add-recipe-modal {
+  width: 900px;
+  height: 80vh;
+
+  align-self: center;
+  justify-self: center;
+  background-color: white;
+  padding: 25px;
+  border-radius: 20px;
+  border: 2px solid rgb(235, 235, 235);
+}
+
+.add-recipe-scroll {
+  overflow-y: scroll;
+  display: flex;
+  justify-items: center;
+  height: 100%;
+  overflow-x: hidden;
+}
+.add-recipe-modal-grid {
+  width: 100%;
+  display: grid;
+  flex-direction: column;
+  grid-template-rows: [title-t] 70px [title-b image-t] auto [image-b info-t] auto [info-b ingredients-t] auto [ingredients-b directions-t] auto [directions-b error-t] auto [error-b submit-t] 60px [submit-b];
+  grid-template-columns: 30px [ start] auto [end] 30px;
+  row-gap: 10px;
+}
+
+.directions {
+  grid-row: directions-t/directions-b;
+  grid-column: start/end;
+  // width: 80vw;
+}
+.add-ingredient {
+  // width: 80vw;
+  display: flex;
+  grid-row: ingredients-t/ingredients-b;
+  grid-column: start/end;
+  flex-direction: column;
+  justify-content: center;
+
+  .ingredient-list {
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+  }
+
+  .add-ingredient-inputs {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-self: center;
+  }
+
+  .add-ingredient-button {
+    margin-top: 10px;
+    justify-self: center;
+    width: max-content;
+
+    font-size: 20px;
+    background-color: $primary-color;
+
+    color: $light-text;
+    border-radius: 24px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    transform: translateY(-18px);
+  }
+}
+
+.add-ingredient-input {
+  display: grid;
+  grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+
+  label {
+    grid: label-t/label-b;
+    font-size: 14px;
+    justify-self: center;
+  }
+
+  input {
+    grid-row: input-t/input-b;
+    height: 24px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    text-align: center;
+    outline: none;
+  }
+
+  input:focus {
+    border-bottom: 2px solid gray;
+  }
+
+  .quantity {
+    width: 40px;
+  }
+
+  .unit {
+    width: 60px;
+  }
+
+  .ingredient {
+    text-align: left;
+  }
+}
+
+.ingredient-list__ingredient {
+  display: flex;
+  align-items: center;
+
   font-size: 24px;
-  justify-self: flex-end;
-  align-self: flex-start;
+
+  .up-down-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+  }
+  button {
+    outline: none;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.add-ingredient__error-message {
+  // width: 80vw;
+  height: 20px;
+}
+
+.title {
+  justify-self: center;
+  text-align: center;
+  width: 100%;
+  border-bottom: 2px solid grey;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  outline: none;
+
+  font-size: 24px;
+}
+
+.add-direction-input {
+  margin-top: 20px;
+  display: grid;
+
+  grid-template-columns: [input-t] auto [input-b label-t] max-content [label-b];
+  grid-template-rows: [top] auto [bottom];
+
+  label {
+    grid-column: label-t/label-b;
+    grid-row: top/bottom;
+
+    justify-self: center;
+    margin-left: 10px;
+    align-self: center;
+    width: max-content;
+
+    font-size: 20px;
+    background-color: $primary-color;
+
+    color: $light-text;
+    border-radius: 24px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  input {
+    grid-column: input-t/input-b;
+    grid-row: top/bottom;
+    height: 24px;
+    font-size: 20px;
+    border: none;
+    border-bottom: 2px solid lightgray;
+    text-align: left;
+    outline: none;
+
+    ::placeholder {
+      font-size: 20px;
+    }
+  }
+
+  input:focus {
+    border-bottom: 2px solid gray;
+  }
+}
+
+.direction-list {
+  align-items: center;
+
+  font-size: 24px;
+
+  &__direction {
+    display: flex;
+
+    .up-down-buttons {
+      display: flex;
+      flex-direction: column;
+      margin-right: 5px;
+    }
+    button {
+      outline: none;
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+
+.add-recipe-button {
+  // width: 80vw;
+  grid-row: submit-t/submit-b;
+  grid-column: start/end;
+  width: max-content;
+  font-size: 20px;
+  background-color: $primary-color;
+  align-self: center;
+  color: $light-text;
+  border-radius: 24px;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-self: center;
+  align-self: center;
+}
+
+.add-recipe-error-message {
+  grid-row: error-t/error-b;
+  grid-column: start/end;
+  justify-self: center;
+  color: red;
+  font-style: italic;
+}
+
+.recipe-info {
+  // width: 80vw;
+  display: flex;
+  grid-row: info-t/info-b;
+  grid-column: start/end;
+  flex-direction: column;
+}
+
+.recipe-info-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: [servings-s] 1fr [servings-e activetime-s] 1fr [activetime-e totaltime-s] 1fr [totaltime-e];
+  grid-template-rows: [title-t] max-content [title-b info-t] max-content [info-b description-t] 200px [description-b];
+  gap: 20px;
+
+  .input-and-label {
+    display: grid;
+    grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+
+    label {
+      grid: label-t/label-b;
+      font-size: 14px;
+      justify-self: center;
+    }
+
+    input {
+      grid-row: input-t/input-b;
+      height: 24px;
+      font-size: 20px;
+      border: none;
+      border-bottom: 2px solid lightgray;
+      text-align: center;
+      outline: none;
+    }
+
+    input:focus {
+      border-bottom: 2px solid gray;
+    }
+
+    textarea {
+      grid-row: input-t/input-b;
+
+      font-size: 20px;
+      font-family: "Urbanist", sans-serif;
+      border: 2px solid lightgray;
+      border-radius: 8px;
+      text-align: left;
+      outline: none;
+      padding: 10px;
+    }
+
+    textarea::placeholder {
+      font-family: "Urbanist", sans-serif;
+    }
+    textarea:focus {
+      border: 2px solid gray;
+    }
+  }
+
+  .servings {
+    grid-column: servings-s/servings-e;
+    grid-row: info-t/info-b;
+    align-self: flex-end;
+    width: 100%;
+  }
+
+  .title-input {
+    grid-column: servings-s/totaltime-e;
+    grid-row: title-t/title-b;
+
+    width: 100%;
+    input {
+      width: 100%;
+    }
+  }
+
+  .active-time {
+    grid-column: activetime-s/activetime-e;
+    grid-row: info-t/info-b;
+    align-self: center;
+    width: 100%;
+  }
+
+  .total-time {
+    grid-column: totaltime-s/totaltime-e;
+    grid-row: info-t/info-b;
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  .description {
+    grid-column: servings-s/totaltime-e;
+    grid-row: description-t/description-b;
+    width: 100%;
+    height: 200px;
+    font-family: "Urbanist", sans-serif;
+    text-align: left;
+
+    label {
+      text-align: right;
+    }
+  }
+}
+
+.title-grid {
+  display: grid;
+  grid-row: title-t/title-b;
+  // width: 80vw;
+  height: 100%;
+
+  grid-column: start/end;
+  grid-template-columns: [s]1fr[e];
+  grid-template-rows: [s]1fr[e];
+
+  div {
+    align-self: center;
+    grid-row: s/e;
+    grid-column: s/e;
+    align-self: flex-end;
+  }
+
+  button {
+    grid-row: s/e;
+    grid-column: s/e;
+    background-color: transparent;
+    outline: none;
+    color: grey;
+    border: none;
+    font-size: 24px;
+    justify-self: flex-end;
+    align-self: flex-start;
+  }
+}
+
+.dz-message {
+  display: flex;
+  width: 100%;
+
+  // height: 100px;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.dropzone .dz-preview.dz-image-preview {
+  background: #e1e1e1;
+}
+
+.image-uploader {
+  grid-row: image-t/image-b;
+  grid-column: start/end;
+  // width: 80vw;
 }

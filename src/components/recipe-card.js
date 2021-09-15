@@ -40,26 +40,5 @@ export default class RecipeCard extends Component {
         </div>
       </Link>
     );
-
-    // return (
-    //   <div className="recipe-card">
-    //     <img src={lasagna} alt={"Lasagna"} />
-
-    //     <RecipeTitle className="recipe-card__title" title="Lasagna" />
-
-    //     <Servings className="recipe-card__servings" servings="4" />
-    //     <Rating className="recipe-card__rating" rating="4" />
-    //     <RecipeTime
-    //       className="recipe-card__active-time"
-    //       type="Active"
-    //       time="40 min"
-    //     />
-    //     <RecipeTime
-    //       className="recipe-card__total-time"
-    //       type="Total"
-    //       time="60 min"
-    //     />
-    //   </div>
-    // );
   }
 }

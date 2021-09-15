@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AddRecipeModal from "./add-recipe-modal";
+import AddRecipeModal from "./add-recipe/add-recipe-modal";
 import LoginModal from "./login-modal";
 import RegisterModal from "./register-modal";
 
