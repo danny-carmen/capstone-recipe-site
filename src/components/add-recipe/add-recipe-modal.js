@@ -19,15 +19,15 @@ export default class AddRecipeModal extends Component {
     super(props);
 
     this.state = {
-      recipeTitle: "",
-      recipeDescription: "",
-      recipeServings: "",
-      recipeActiveTime: "",
-      recipeTotalTime: "",
-      ingredients: [],
-      directions: [],
+      recipeTitle: props.recipe.title || "",
+      recipeDescription: props.recipe.description || "",
+      recipeServings: props.recipe.servings || "",
+      recipeActiveTime: props.recipe.activeTime || "",
+      recipeTotalTime: props.recipe.totalTime || "",
+      ingredients: props.recipe.ingredients || [],
+      directions: props.recipe.directions || [],
       errorMessage: "",
-      recipeImage: "",
+      recipeImage: props.recipe.image || "",
     };
 
     this.handleChange = this.handleChange.bind(this);

@@ -487,11 +487,10 @@
 }
 
 .dropzone .dz-preview.dz-image-preview {
-  background: #e1e1e1;
+  background: #e1e1e1 !important;
 }
 
 .image-uploader {
   grid-row: image-t/image-b;
   grid-column: start/end;
-  // width: 80vw;
 }

@@ -52,6 +52,7 @@ export default class AccountMenu extends Component {
           <AddRecipeModal
             handleModalClose={this.handleAddRecipeModalClose}
             modalIsOpen={this.state.addRecipeModalIsOpen}
+            recipe=""
           />
           <div id="account-menu" className="account-menu account-menu__closed">
             <button>Profile</button>

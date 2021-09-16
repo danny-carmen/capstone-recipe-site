@@ -5,6 +5,7 @@ import RecipeIngredients from "./recipe-ingredients";
 
 import lasagna from "../images/lasagna.jpg";
 import RecipeImage from "./recipe-image";
+//TODO add author to recipe- style page
 
 export default class RecipePage extends Component {
   constructor() {
@@ -13,6 +14,7 @@ export default class RecipePage extends Component {
     const recipeObject = {
       id: 1,
       recipeVersion: "1.0",
+      author: "",
       title: "Lasagna",
       servings: "4",
       activeTime: "40 min",
@@ -47,7 +49,10 @@ export default class RecipePage extends Component {
     return (
       <div className="recipe-page-wrapper">
         <div className="recipe-page">
-          <RecipeImage image={this.state.recipe.image} />
+          <RecipeImage
+            image={this.state.recipe.image}
+            imageAlt={this.state.title}
+          />
           <RecipeInfo recipe={this.state.recipe} />
           <RecipeIngredients ingredients={this.state.recipe.ingredients} />
           <RecipeDirections directions={this.state.recipe.directions} />

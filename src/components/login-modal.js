@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
+//TODO get state and onChange going for all the inputs
 export default class LoginModal extends Component {
-  constructor(props) {
-    super(props);
-  }
+  constructor() {
+    super();
 
+    this.state = {};
+  }
   render() {
     return (
       <ReactModal

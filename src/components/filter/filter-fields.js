@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FilterFieldIcon from "./filter-field-icon";
+// import FilterFieldIcon from "./filter-field-icon";
 import FilterFieldRating from "./filter-field-rating";
 import FilterFieldServings from "./filter-field-servings";
 import FilterFieldWithIngredients from "./filter-field-with-ingredient";

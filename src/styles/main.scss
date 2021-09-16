@@ -7,6 +7,7 @@
 @import "./recipe.scss";
 @import "./filters.scss";
 @import "./modals.scss";
+@import "./profile.scss";
 
 html,
 body {
@@ -37,19 +38,18 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: transparent;
-  padding-right: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 /* Handle on hover */

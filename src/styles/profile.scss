@@ -1,0 +1,85 @@
+.profile-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 200px [content-t] 1fr [content-b] 100px;
+  grid-template-columns: 200px [selection-s] 1fr [selection-e window-s] 3fr [window-e] 200px;
+  column-gap: 0px;
+}
+
+.selection-options {
+  grid-column: selection-s/selection-e;
+  grid-row: content-t/content-b;
+
+  border-right: 2px solid lightgray;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  button {
+    font-size: 24px;
+
+    padding: 10px;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-right: 6px solid transparent;
+    text-align: right;
+    width: max-content;
+  }
+
+  .selected {
+    border-right: 6px solid lightgray;
+  }
+}
+
+.flip-window {
+  grid-column: window-s/window-e;
+  grid-row: content-t/content-b;
+}
+
+.account-info-wrapper {
+}
+
+.user-recipes {
+  margin: 20px;
+  overflow-y: scroll;
+
+  //need a repeat grid here next, should resolve overlap issues after
+}
+
+.user-recipe-wrapper {
+  width: 300px;
+  height: 300px;
+  display: grid;
+  grid-template-columns: [img-s] 1fr [img-e];
+  grid-template-rows: [img-t] 4fr [img-b title-t] auto [title-b buttons-t] auto [buttons-b];
+
+  box-shadow: 0px 0px 15px 0px #adadad;
+
+  .title {
+    grid-row: title-t/title-b;
+  }
+
+  .recipe-images {
+    grid-row: img-t/img-b;
+    grid-column: img-s/img-e;
+
+    img {
+      object-fit: cover;
+    }
+  }
+  .buttons {
+    grid-row: buttons-t/buttons-b;
+    display: flex;
+    justify-content: space-around;
+
+    button {
+    }
+  }
+}
+
+.user-recipe-wrapper:hover,
+.user-recipe-wrapper:focus {
+  box-shadow: 0px 0px 30px 0px #6d6d6d;
+}
