@@ -5,13 +5,15 @@ export default class AccountInfo extends Component {
     super();
 
     this.state = {
-      name: "",
       username: "",
       email: "",
       oldPassword: "",
       newPassword: "",
       retypePassword: "",
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -20,32 +22,57 @@ export default class AccountInfo extends Component {
     });
   }
 
+  handleSubmit() {}
+  //TODO function for submit
+  //only change those items that are input
+  //extra validation for the password
+
   render() {
     return (
       <div className="account-info-wrapper">
-        <div>
-          <label>Username:</label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input name="email " type="text" />
-        </div>
-        <div>Reset Password</div>
-        <div>
-          <label for="retypePassword">Old Password:</label>
-          <input name="oldPassword" type="password" />
-        </div>
-        <div>
-          <label for="newPassword">New Password:</label>
-          <input name="newPassword" type="password" />
-        </div>
-        <div>
-          <label for="retypePassword">Retype New Password:</label>
-          <input name="retypePassword" type="password" />
-        </div>
+        <label for="username">Username:</label>
+        <input
+          name="username"
+          id="username"
+          type="text"
+          onChange={this.handleChange}
+        />
 
-        <div>SUBMIT CHANGES</div>
+        <label for="email"> Email:</label>
+        <input
+          name="email"
+          id="email"
+          type="text"
+          onChange={this.handleChange}
+        />
+
+        <div>Reset Password</div>
+
+        <label for="oldPassword">Old Password:</label>
+        <input
+          name="oldPassword"
+          type="password"
+          id="oldPassword"
+          onChange={this.handleChange}
+        />
+
+        <label for="newPassword">New Password:</label>
+        <input
+          name="newPassword"
+          type="password"
+          id="newPassword"
+          onChange={this.handleChange}
+        />
+
+        <label for="retypePassword">Retype New Password:</label>
+        <input
+          name="retypePassword"
+          type="password"
+          id="retypePassword"
+          onChange={this.handleChange}
+        />
+
+        <button onClick={this.handleSubmit}>SUBMIT CHANGES</button>
       </div>
     );
   }

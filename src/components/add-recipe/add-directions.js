@@ -76,7 +76,7 @@ export default class AddDirections extends Component {
   render() {
     const directions = this.props.directions.map((direction, idx) => {
       return (
-        <div className="direction-list__direction">
+        <div key={idx} className="direction-list__direction">
           <button
             className="remove-direction"
             onClick={() => {
@@ -118,6 +118,7 @@ export default class AddDirections extends Component {
               id="add-direction-input"
               name="newDirection"
               type="text"
+              autoComplete="off"
               placeholder="Add step here..."
               value={this.state.newDirection}
               onChange={this.handleChange}

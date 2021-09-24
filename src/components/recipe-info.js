@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Rating from "./rating";
+import Author from "./author";
 import RecipeTime from "./recipe-time";
 import Servings from "./servings";
 
@@ -12,14 +12,15 @@ export default class RecipeInfo extends Component {
     };
   }
   render() {
-    const { servings, activeTime, totalTime, rating } = this.state.recipe;
+    const { recipeServings, recipeActiveTime, recipeTotalTime, recipeAuthor } =
+      this.state.recipe;
     return (
       <div className="recipe-info">
         <div>
-          <Servings servings={servings} />
-          <Rating rating={rating} />
-          <RecipeTime type="Active" time={activeTime} />
-          <RecipeTime type="Total" time={totalTime} />
+          <Servings servings={recipeServings} />
+          <Author author={recipeAuthor} />
+          <RecipeTime type="Active" time={recipeActiveTime} />
+          <RecipeTime type="Total" time={recipeTotalTime} />
         </div>
       </div>
     );

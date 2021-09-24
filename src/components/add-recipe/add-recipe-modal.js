@@ -10,9 +10,29 @@ import {
 import AddIngredients from "./add-ingredients";
 import AddDirections from "./add-directions";
 import { DropzoneComponent } from "react-dropzone-component";
+import axios from "axios";
+import S3 from "aws-s3";
+
+import * as GB from "../../globalvariables";
 
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+
+const config = {
+  bucketName: GB.S3B,
+  region: GB.R,
+  accessKeyId: GB.AK,
+  secretAccessKey: GB.SAK,
+};
+
+const S3Client = new S3(config);
+
+const handleUpload = async (file, newFileName) => {
+  debugger;
+  S3Client.uploadFile(file, newFileName)
+    .then((data) => console.log(data))
+    .catch((err) => console.error(err));
+};
 
 export default class AddRecipeModal extends Component {
   constructor(props) {
@@ -58,13 +78,16 @@ export default class AddRecipeModal extends Component {
 
   handleImageDrop() {
     return {
-      addedfile: (file) => this.setState({ recipeImage: file }),
+      addedfile: (file) => {
+        this.setState({ recipeImage: file });
+      },
     };
   }
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
+      errorMessage: "",
     });
   }
 
@@ -129,20 +152,53 @@ export default class AddRecipeModal extends Component {
     }
 
     const recipeObject = {
-      recipeImage: this.state.recipeImage,
+      recipeVersion: "0.3.0",
+      recipeImage: "",
       recipeTitle: this.state.recipeTitle,
+      recipeAuthor: "dcarmen",
       recipeDescription: this.state.recipeDescription,
       recipeServings: this.state.recipeServings,
       recipeActiveTime: this.state.recipeActiveTime,
       recipeTotalTime: this.state.recipeTotalTime,
-      ingredients: this.state.ingredients,
-      directions: this.state.directions,
+      recipeIngredients: this.state.ingredients,
+      recipeDirections: this.state.directions,
     };
-    debugger;
+
+    axios
+      .post("http://localhost:5000/recipes/add", recipeObject)
+      .then((res1) => {
+        debugger;
+        let documentId = res1.data;
+        handleUpload(this.state.recipeImage, documentId);
+
+        axios
+          .post("http://localhost:5000/recipes/update/" + documentId, {
+            recipeImage:
+              "https://tastable-recipe-images.s3.us-west-2.amazonaws.com/" +
+              documentId +
+              ".jpeg",
+          })
+          .then(
+            this.setState({
+              recipeTitle: "",
+              recipeDescription: "",
+              recipeServings: "",
+              recipeActiveTime: "",
+              recipeTotalTime: "",
+              ingredients: [],
+              directions: [],
+              errorMessage: "",
+              recipeImage: "",
+            })
+          )
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log("Error: " + err));
+
+    this.props.handleModalClose();
   }
 
   render() {
-    console.log(this.state.ingredients);
     return (
       <ReactModal
         className="add-recipe-modal"
@@ -164,6 +220,31 @@ export default class AddRecipeModal extends Component {
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
+
+            {/* Something similar to this for showing current Image */}
+
+            {/* <div className="image-uploaders">
+          {this.state.thumb_image_url && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.thumb_image_url} />
+
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("thumb_image")}>
+                  Remove file
+                </a>
+              </div>
+            </div>
+          ) : (
+            <DropzoneComponent
+              ref={this.thumbRef}
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleThumbDrop()}
+            >
+              <div className="dz-message">Thumbnail</div>
+            </DropzoneComponent>
+          )} */}
+
             <div className="image-uploader">
               <DropzoneComponent
                 ref={this.recipeImageRef}
@@ -182,6 +263,7 @@ export default class AddRecipeModal extends Component {
                     type="text"
                     id="recipeTitle"
                     name="recipeTitle"
+                    autoComplete="off"
                     value={this.state.recipeTitle}
                     onChange={this.handleChange}
                   />
@@ -193,6 +275,7 @@ export default class AddRecipeModal extends Component {
                     type="number"
                     id="recipeServings"
                     name="recipeServings"
+                    autoComplete="off"
                     onChange={this.handleChange}
                     value={this.state.recipeServings}
                   />
@@ -203,6 +286,7 @@ export default class AddRecipeModal extends Component {
                     type="number"
                     id="recipeActiveTime"
                     name="recipeActiveTime"
+                    autoComplete="off"
                     value={this.state.recipeActiveTime}
                     onChange={this.handleChange}
                   />
@@ -214,6 +298,7 @@ export default class AddRecipeModal extends Component {
                     type="number"
                     id="recipeTotalTime"
                     name="recipeTotalTime"
+                    autoComplete="off"
                     value={this.state.recipeTotalTime}
                     onChange={this.handleChange}
                   />
@@ -224,6 +309,7 @@ export default class AddRecipeModal extends Component {
                     type="text"
                     id="recipeDescription"
                     name="recipeDescription"
+                    autoComplete="off"
                     value={this.state.recipeDescription}
                     placeholder="Recipe Description...."
                     onChange={this.handleChange}

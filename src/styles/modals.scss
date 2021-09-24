@@ -128,6 +128,13 @@
   grid-template-rows: [title-t] 70px [title-b image-t] auto [image-b info-t] auto [info-b ingredients-t] auto [ingredients-b directions-t] auto [directions-b error-t] auto [error-b submit-t] 60px [submit-b];
   grid-template-columns: 30px [ start] auto [end] 30px;
   row-gap: 10px;
+
+  .recipe-info {
+    display: flex;
+    grid-row: info-t/info-b;
+    grid-column: start/end;
+    flex-direction: column;
+  }
 }
 
 .directions {
@@ -302,6 +309,11 @@
   &__direction {
     display: flex;
 
+    .remove-direction {
+      align-self: flex-start;
+      margin-top: 10px;
+    }
+
     .up-down-buttons {
       display: flex;
       flex-direction: column;
@@ -340,14 +352,6 @@
   justify-self: center;
   color: red;
   font-style: italic;
-}
-
-.recipe-info {
-  // width: 80vw;
-  display: flex;
-  grid-row: info-t/info-b;
-  grid-column: start/end;
-  flex-direction: column;
 }
 
 .recipe-info-grid {

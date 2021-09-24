@@ -17,7 +17,7 @@ function App() {
           <Route exact path="/" component={HomePage} />
 
           <Route
-            path="/recipes/:slug"
+            path="/recipes/:id"
             render={(props) => <RecipePage {...props} />}
           />
 

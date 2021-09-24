@@ -135,6 +135,7 @@ export default class AddIngredients extends Component {
               id="add-ingredient-quantity-input"
               className="quantity"
               name="newQuantity"
+              autoComplete="off"
               type="text"
               value={this.state.newQuantity}
               onChange={this.handleChange}
@@ -147,6 +148,7 @@ export default class AddIngredients extends Component {
               id="add-ingredient-unit-input"
               className="unit"
               name="newUnit"
+              autoComplete="off"
               type="text"
               value={this.state.newUnit}
               onChange={this.handleChange}
@@ -159,6 +161,7 @@ export default class AddIngredients extends Component {
               id="add-ingredient-ingredient-input"
               className="ingredient"
               name="newIngredient"
+              autoComplete="off"
               type="text"
               value={this.state.newIngredient}
               onChange={this.handleChange}

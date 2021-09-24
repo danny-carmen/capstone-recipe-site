@@ -15,10 +15,6 @@ export default class MyRecipes extends Component {
     const userRecipeItems = this.props.recipes.map((recipe) => {
       return <UserRecipe recipe={recipe} />;
     });
-    return (
-      <div className="user-recipes">
-        <div>{userRecipeItems}</div>
-      </div>
-    );
+    return <div className="user-recipes">{userRecipeItems}</div>;
   }
 }

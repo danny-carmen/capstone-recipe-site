@@ -5,13 +5,13 @@
 .recipe-board-wrapper {
   display: grid;
   justify-content: center;
-  align-content: center;
+  align-content: flex-start;
 
   height: 100vh;
 }
 
 .spacer-search-bar {
-  height: 190px;
+  height: 180px;
 }
 
 .spacer50 {

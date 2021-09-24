@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import AddRecipeModal from "./add-recipe/add-recipe-modal";
 import LoginModal from "./login-modal";
 import RegisterModal from "./register-modal";
@@ -55,9 +56,16 @@ export default class AccountMenu extends Component {
             recipe=""
           />
           <div id="account-menu" className="account-menu account-menu__closed">
-            <button>Profile</button>
-            <button onClick={this.handleAddRecipeClick}>Add Recipe</button>
-            <button>Log Out</button>
+            <Link className="account-button" to="/profile">
+              Profile
+            </Link>
+            <button
+              className="account-button"
+              onClick={this.handleAddRecipeClick}
+            >
+              Add Recipe
+            </button>
+            <button className="account-button">Log Out</button>
           </div>
         </div>
       );
