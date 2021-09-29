@@ -2,13 +2,50 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 //TODO get state and onChange going for all the inputs
 export default class LoginModal extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {};
+    this.state = {
+      loginEmail: "",
+      loginPassword: "",
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleSubmit() {
+    //check if user or email is already used? or is this just done at server side?
+
+    console.log(this.state.loginEmail, this.state.loginPassword);
+    axios
+      .post(
+        "http://localhost:5000/auth/login",
+        {
+          username: this.state.loginEmail,
+          password: this.state.loginPassword,
+        },
+        { withCredentials: true }
+      )
+      .then(() => {
+        this.setState({ loginEmail: "", loginPassword: "" });
+        this.props.handleModalClose();
+
+        this.props.logInUser();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+      errorMessage: "",
+    });
+  }
+
   render() {
     return (
       <ReactModal
@@ -26,12 +63,13 @@ export default class LoginModal extends Component {
             <FontAwesomeIcon icon={faTimes} />
           </button>
           <div className="label-and-input">
-            <label for="loginEmail">Email</label>
+            <label for="loginEmail">Username</label>
             <input
               className="login-input"
-              type="email"
+              type="text"
               id="loginEmail"
               name="loginEmail"
+              onChange={this.handleChange}
             />
           </div>
           <div className="label-and-input">
@@ -41,6 +79,7 @@ export default class LoginModal extends Component {
               type="password"
               id="loginPassword"
               name="loginPassword"
+              onChange={this.handleChange}
             />
           </div>
           <div className="login-input__button-wrapper">
@@ -48,8 +87,8 @@ export default class LoginModal extends Component {
               className="login-input__button"
               type="submit"
               value="Log In"
+              onClick={this.handleSubmit}
             />
-            <button className="login-input__button">Register</button>
           </div>
         </div>
       </ReactModal>

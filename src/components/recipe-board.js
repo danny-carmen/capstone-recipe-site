@@ -34,8 +34,7 @@ export default class RecipeBoard extends Component {
 
   render() {
     const boardItems = this.props.data.map((boardItem) => {
-      console.log();
-      return <RecipeCard key={boardItem.id} boardItem={boardItem} />;
+      return <RecipeCard key={boardItem._id} boardItem={boardItem} />;
     });
 
     return (

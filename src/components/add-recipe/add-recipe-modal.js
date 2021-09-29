@@ -30,7 +30,9 @@ const S3Client = new S3(config);
 const handleUpload = async (file, newFileName) => {
   debugger;
   S3Client.uploadFile(file, newFileName)
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+    })
     .catch((err) => console.error(err));
 };
 
@@ -39,30 +41,37 @@ export default class AddRecipeModal extends Component {
     super(props);
 
     this.state = {
-      recipeTitle: props.recipe.title || "",
-      recipeDescription: props.recipe.description || "",
-      recipeServings: props.recipe.servings || "",
-      recipeActiveTime: props.recipe.activeTime || "",
-      recipeTotalTime: props.recipe.totalTime || "",
-      ingredients: props.recipe.ingredients || [],
-      directions: props.recipe.directions || [],
+      recipeTitle: props.recipe.recipeTitle || "",
+      recipeAuthor: props.recipe.recipeAuthor || "",
+      recipeDescription: props.recipe.recipeDescription || "",
+      recipeServings: props.recipe.recipeServings || "",
+      recipeActiveTime: props.recipe.recipeActiveTime || "",
+      recipeTotalTime: props.recipe.recipeTotalTime || "",
+      ingredients: props.recipe.recipeIngredients || [],
+      directions: props.recipe.recipeDirections || [],
       errorMessage: "",
-      recipeImage: props.recipe.image || "",
+      recipeImage: props.recipe.recipeImage || "",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAddIngredientList = this.handleAddIngredientList.bind(this);
     this.handleAddDirectionsList = this.handleAddDirectionsList.bind(this);
-    this.handleAddRecipe = this.handleAddRecipe.bind(this);
+    this.handleSubmitRecipe = this.handleSubmitRecipe.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
     this.handleImageDrop = this.handleImageDrop.bind(this);
     this.componentConfig = this.componentConfig.bind(this);
     this.recipeImageRef = React.createRef();
+    this.submitNewRecipe = this.submitNewRecipe.bind(this);
+    this.submitEditedRecipe = this.submitEditedRecipe.bind(this);
+    this.removeImage = this.removeImage.bind(this);
+    this.updateDatabase = this.updateDatabase.bind(this);
+    this.reloadRecipesAndCloseModal =
+      this.reloadRecipesAndCloseModal.bind(this);
   }
 
   componentConfig() {
     return {
-      iconFiletypes: [".jpg", ".png"],
+      iconFiletypes: [".jpg"],
       showFiletypeIcon: true,
       postUrl: "https://httpbin.org/post",
     };
@@ -72,6 +81,7 @@ export default class AddRecipeModal extends Component {
     return {
       addRemoveLinks: true,
       maxFiles: 1,
+      acceptedFiles: ".jpg, .jpeg",
       dictDefaultMessage: "Upload Recipe Image",
     };
   }
@@ -103,71 +113,68 @@ export default class AddRecipeModal extends Component {
     });
   }
 
-  handleAddRecipe() {
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/auth/getUserName", { withCredentials: true })
+      .then((res) => {
+        this.setState({ recipeAuthor: res.data });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  areAnyRequiredFieldsEmpty() {
     if (!this.state.recipeTitle) {
       this.setState({
         errorMessage: "Please provide a title for this recipe.",
       });
-      return;
+      return true;
     }
     if (!this.state.recipeDescription) {
       this.setState({
         errorMessage: "Please provide a description for this recipe.",
       });
-      return;
+      return true;
     }
     if (!this.state.recipeActiveTime) {
       this.setState({
         errorMessage: "Please provide an active time for this recipe.",
       });
-      return;
+      return true;
     }
 
     if (!this.state.recipeTotalTime) {
       this.setState({
         errorMessage: "Please provide a total time for this recipe.",
       });
-      return;
+      return true;
     }
 
     if (this.state.ingredients.length < 1) {
       this.setState({
         errorMessage: "Please provide at least one ingredient for this recipe.",
       });
-      return;
+      return true;
     }
 
     if (this.state.directions.length < 1) {
       this.setState({
         errorMessage: "Please provide at least one direction for this recipe.",
       });
-      return;
+      return true;
     }
 
     if (!this.state.recipeImage) {
       this.setState({
         errorMessage: "Please provide an image for this recipe.",
       });
-      return;
+      return true;
     }
+  }
 
-    const recipeObject = {
-      recipeVersion: "0.3.0",
-      recipeImage: "",
-      recipeTitle: this.state.recipeTitle,
-      recipeAuthor: "dcarmen",
-      recipeDescription: this.state.recipeDescription,
-      recipeServings: this.state.recipeServings,
-      recipeActiveTime: this.state.recipeActiveTime,
-      recipeTotalTime: this.state.recipeTotalTime,
-      recipeIngredients: this.state.ingredients,
-      recipeDirections: this.state.directions,
-    };
-
+  submitNewRecipe(recipeObject) {
     axios
       .post("http://localhost:5000/recipes/add", recipeObject)
       .then((res1) => {
-        debugger;
         let documentId = res1.data;
         handleUpload(this.state.recipeImage, documentId);
 
@@ -178,7 +185,7 @@ export default class AddRecipeModal extends Component {
               documentId +
               ".jpeg",
           })
-          .then(
+          .then(() => {
             this.setState({
               recipeTitle: "",
               recipeDescription: "",
@@ -189,13 +196,87 @@ export default class AddRecipeModal extends Component {
               directions: [],
               errorMessage: "",
               recipeImage: "",
-            })
-          )
+            });
+            debugger;
+            this.reloadRecipesAndCloseModal();
+          })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log("Error: " + err));
+  }
 
+  submitEditedRecipe(recipeObject) {
+    //need to check if image changed
+    debugger;
+    if (this.props.recipe.recipeImage !== this.state.recipeImage) {
+      S3Client.deleteFile(this.props.recipe._id + ".jpeg")
+        .then((data) => {
+          debugger;
+          console.log(data);
+          S3Client.uploadFile(this.state.recipeImage, this.props.recipe._id)
+            .then((data) => {
+              console.log(data);
+              this.updateDatabase(recipeObject);
+            })
+            .catch((err) => console.error(err));
+        })
+        .catch((err) => console.error(err));
+    } else {
+      this.updateDatabase(recipeObject);
+    }
+  }
+  updateDatabase(recipeObject) {
+    debugger;
+    axios
+      .post(
+        "http://localhost:5000/recipes/update/" + this.props.recipe._id,
+        recipeObject
+      )
+      .then((res) => {
+        debugger;
+        console.log(res);
+        this.reloadRecipesAndCloseModal();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  handleSubmitRecipe() {
+    if (this.areAnyRequiredFieldsEmpty()) {
+      return;
+    }
+
+    const recipeObject = {
+      recipeVersion: "0.3.0",
+      recipeImage: this.state.recipeImage,
+      recipeTitle: this.state.recipeTitle,
+      recipeAuthor: this.state.recipeAuthor,
+      recipeDescription: this.state.recipeDescription,
+      recipeServings: this.state.recipeServings,
+      recipeActiveTime: this.state.recipeActiveTime,
+      recipeTotalTime: this.state.recipeTotalTime,
+      recipeIngredients: this.state.ingredients,
+      recipeDirections: this.state.directions,
+    };
+
+    if (this.props.mode === "newRecipe") {
+      this.submitNewRecipe(recipeObject);
+    } else {
+      recipeObject.recipeImage = this.props.recipe.recipeImage;
+      this.submitEditedRecipe(recipeObject);
+    }
+  }
+
+  reloadRecipesAndCloseModal() {
+    if (this.props.reloadRecipes) {
+      this.props.reloadRecipes();
+    }
     this.props.handleModalClose();
+  }
+
+  removeImage() {
+    this.setState({
+      recipeImage: null,
+    });
   }
 
   render() {
@@ -221,37 +302,24 @@ export default class AddRecipeModal extends Component {
               </button>
             </div>
 
-            {/* Something similar to this for showing current Image */}
-
-            {/* <div className="image-uploaders">
-          {this.state.thumb_image_url && this.state.editMode ? (
-            <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.thumb_image_url} />
-
-              <div className="image-removal-link">
-                <a onClick={() => this.deleteImage("thumb_image")}>
-                  Remove file
-                </a>
-              </div>
-            </div>
-          ) : (
-            <DropzoneComponent
-              ref={this.thumbRef}
-              config={this.componentConfig()}
-              djsConfig={this.djsConfig()}
-              eventHandlers={this.handleThumbDrop()}
-            >
-              <div className="dz-message">Thumbnail</div>
-            </DropzoneComponent>
-          )} */}
-
             <div className="image-uploader">
-              <DropzoneComponent
-                ref={this.recipeImageRef}
-                config={this.componentConfig()}
-                eventHandlers={this.handleImageDrop()}
-                djsConfig={this.djsConfig()}
-              ></DropzoneComponent>
+              {this.props.mode === "editRecipe" &&
+              typeof this.state.recipeImage === "string" ? (
+                <div className="current-image-wrapper">
+                  <img src={this.state.recipeImage} />
+
+                  <div className="image-removal-link">
+                    <a onClick={() => this.removeImage()}>Remove file</a>
+                  </div>
+                </div>
+              ) : (
+                <DropzoneComponent
+                  ref={this.recipeImageRef}
+                  config={this.componentConfig()}
+                  eventHandlers={this.handleImageDrop()}
+                  djsConfig={this.djsConfig()}
+                ></DropzoneComponent>
+              )}
             </div>
             <div className="recipe-info">
               <div className="title">INFORMATION</div>
@@ -329,12 +397,21 @@ export default class AddRecipeModal extends Component {
             <div className="add-recipe-error-message">
               {this.state.errorMessage}
             </div>
-            <button
-              className="add-recipe-button"
-              onClick={this.handleAddRecipe}
-            >
-              SUBMIT RECIPE
-            </button>
+            {this.props.mode === "newRecipe" ? (
+              <button
+                className="add-recipe-button"
+                onClick={this.handleSubmitRecipe}
+              >
+                SUBMIT RECIPE
+              </button>
+            ) : (
+              <button
+                className="add-recipe-button"
+                onClick={this.handleSubmitRecipe}
+              >
+                EDIT RECIPE
+              </button>
+            )}
           </div>
         </div>
       </ReactModal>

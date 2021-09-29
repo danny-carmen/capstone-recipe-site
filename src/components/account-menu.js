@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import AddRecipeModal from "./add-recipe/add-recipe-modal";
 import LoginModal from "./login-modal";
 import RegisterModal from "./register-modal";
+import axios from "axios";
+import { withRouter } from "react-router";
 
-export default class AccountMenu extends Component {
+class AccountMenu extends Component {
   constructor(props) {
     super(props);
 
@@ -20,6 +22,8 @@ export default class AccountMenu extends Component {
     this.handleRegisterModalClose = this.handleRegisterModalClose.bind(this);
     this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleAddRecipeModalClose = this.handleAddRecipeModalClose.bind(this);
+    this.checkLoginStatus = this.checkLoginStatus.bind(this);
+    this.logOutUser = this.logOutUser.bind(this);
   }
 
   handleLoginModalClose() {
@@ -46,6 +50,24 @@ export default class AccountMenu extends Component {
     this.setState({ addRecipeModalIsOpen: true });
   }
 
+  checkLoginStatus() {
+    debugger;
+    this.props.checkLoginStatus();
+  }
+
+  logOutUser() {
+    axios
+      .get("http://localhost:5000/auth/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+        this.props.history.push("/");
+        this.props.checkLoginStatus();
+      })
+      .catch((err) => console.log(err));
+  }
+
   render() {
     if (this.props.loggedInStatus === "LOGGED_IN") {
       return (
@@ -54,8 +76,16 @@ export default class AccountMenu extends Component {
             handleModalClose={this.handleAddRecipeModalClose}
             modalIsOpen={this.state.addRecipeModalIsOpen}
             recipe=""
+            mode="newRecipe"
           />
-          <div id="account-menu" className="account-menu account-menu__closed">
+          <div
+            id="account-menu"
+            className={
+              this.props.accountMenuOpen
+                ? "account-menu account-menu__open"
+                : "account-menu account-menu__closed"
+            }
+          >
             <Link className="account-button" to="/profile">
               Profile
             </Link>
@@ -65,7 +95,9 @@ export default class AccountMenu extends Component {
             >
               Add Recipe
             </button>
-            <button className="account-button">Log Out</button>
+            <button onClick={this.logOutUser} className="account-button">
+              Log Out
+            </button>
           </div>
         </div>
       );
@@ -74,6 +106,7 @@ export default class AccountMenu extends Component {
         <div>
           <LoginModal
             handleModalClose={this.handleLoginModalClose}
+            logInUser={this.props.checkLoginStatus()}
             modalIsOpen={this.state.loginModalIsOpen}
           />
           <RegisterModal
@@ -81,12 +114,28 @@ export default class AccountMenu extends Component {
             modalIsOpen={this.state.registerModalIsOpen}
           />
 
-          <div id="account-menu" className="account-menu account-menu__closed">
-            <button onClick={this.handleLoginClick}>Log In</button>
-            <button onClick={this.handleRegisterClick}>Register</button>
+          <div
+            id="account-menu"
+            className={
+              this.props.accountMenuOpen
+                ? "account-menu account-menu__open"
+                : "account-menu account-menu__closed"
+            }
+          >
+            <button className="account-button" onClick={this.handleLoginClick}>
+              Log In
+            </button>
+            <button
+              className="account-button"
+              onClick={this.handleRegisterClick}
+            >
+              Register
+            </button>
           </div>
         </div>
       );
     }
   }
 }
+
+export default withRouter(AccountMenu);

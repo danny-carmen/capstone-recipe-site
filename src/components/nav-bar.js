@@ -13,15 +13,7 @@ export default class NavBar extends Component {
   //TODO get these to be reactive
 
   handleAccountClick(e) {
-    e.currentTarget.classList.toggle("nav-bar__icon-border__unselected");
-    e.currentTarget.classList.toggle("nav-bar__icon-border__selected");
-
-    document
-      .getElementById("account-menu")
-      .classList.toggle("account-menu__closed");
-    document
-      .getElementById("account-menu")
-      .classList.toggle("account-menu__open");
+    this.props.toggleAccountMenu();
   }
   render() {
     return (

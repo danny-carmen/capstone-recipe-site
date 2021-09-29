@@ -2,13 +2,43 @@ import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 //TODO get state and onChange going for all the inputs
 export default class RegisterModal extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      registerUsername: "",
+      registerEmail: "",
+      registerPassword: "",
+      registerRetypePassword: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleSubmit() {
+    //check if user or email is already used? or is this just done at server side?
+    if (this.state.registerPassword === this.state.registerRetypePassword) {
+      axios
+        .post("http://localhost:5000/auth/register", {
+          username: this.state.registerUsername,
+          email: this.state.registerEmail,
+          password: this.state.registerPassword,
+        })
+        .then(console.log("User Registered!"))
+        .catch((err) => console.log(err));
+    }
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+      errorMessage: "",
+    });
+  }
+
   render() {
     return (
       <ReactModal
@@ -25,15 +55,7 @@ export default class RegisterModal extends Component {
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>
-          <div className="label-and-input">
-            <label for="registerName">Name</label>
-            <input
-              className="register-input"
-              type="text"
-              id="registerName"
-              name="registerName"
-            />
-          </div>
+
           <div className="label-and-input">
             <label for="registerusername">Username</label>
             <input
@@ -41,6 +63,7 @@ export default class RegisterModal extends Component {
               type="text"
               id="registerUsername"
               name="registerUsername"
+              onChange={this.handleChange}
             />
           </div>
           <div className="label-and-input">
@@ -50,6 +73,7 @@ export default class RegisterModal extends Component {
               type="email"
               id="registerEmail"
               name="registerEmail"
+              onChange={this.handleChange}
             />
           </div>
           <div className="label-and-input">
@@ -59,15 +83,17 @@ export default class RegisterModal extends Component {
               type="password"
               id="registerPassword"
               name="registerPassword"
+              onChange={this.handleChange}
             />
           </div>
           <div className="label-and-input">
             <label for="registerRetypePassword">Retype Password</label>
             <input
               className="register-input"
-              type="email"
+              type="password"
               id="registerRetypePassword"
               name="registerRetypePassword"
+              onChange={this.handleChange}
             />
           </div>
           <div className="register-input__button-wrapper">
@@ -75,6 +101,7 @@ export default class RegisterModal extends Component {
               className="register-input__button"
               type="submit"
               value="Register"
+              onClick={this.handleSubmit}
             />
           </div>
         </div>

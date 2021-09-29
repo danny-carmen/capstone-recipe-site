@@ -58,6 +58,14 @@ router.route("/search=:criteria").get((req, res) => {
   );
 });
 
+router.route("/user/:username").get((req, res) => {
+  Recipe.find({ recipeAuthor: req.params.username })
+    .then((recipes) => {
+      res.json(recipes);
+    })
+    .catch((err) => console.log(err));
+});
+
 router.route("/:id").get((req, res) => {
   Recipe.findById(req.params.id)
     .then((recipe) => res.json(recipe))
@@ -66,7 +74,7 @@ router.route("/:id").get((req, res) => {
 
 router.route("/:id").delete((req, res) => {
   Recipe.findByIdAndDelete(req.params.id)
-    .then((recipe) => res.json(recipe))
+    .then((res) => res.json(res))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -106,13 +114,16 @@ router.route("/add").post((req, res) => {
 });
 
 router.route("/update/:id").post((req, res) => {
+  console.log(req);
   Recipe.findById(req.params.id)
     .then((recipe) => {
       recipe.recipeVersion = req.body.recipeVersion || recipe.recipeVersion;
-      recipe.recipeName = req.body.recipeName || recipe.recipeName;
+      recipe.recipeTitle = req.body.recipeTitle || recipe.recipeTitle;
       recipe.recipeAuthor = req.body.recipeAuthor || recipe.recipeAuthor;
       recipe.recipeImage = req.body.recipeImage || recipe.recipeImage;
       recipe.recipeServings = req.body.recipeServings || recipe.recipeServings;
+      recipe.recipeDescription =
+        req.body.recipeDescription || recipe.recipeDescription;
       recipe.recipeActiveTime =
         req.body.recipeActiveTime || recipe.recipeActiveTime;
       recipe.recipeTotalTime =
