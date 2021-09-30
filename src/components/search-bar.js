@@ -22,8 +22,6 @@ export default class SearchBar extends Component {
   }
 
   render() {
-    console.log(this.props.isSearch);
-
     return (
       <div className="search-bar-wrapper">
         <input

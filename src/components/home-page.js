@@ -23,6 +23,7 @@ export default class HomePage extends Component {
   }
 
   componentWillMount() {
+    console.log("Getting Recipes");
     this.setState({ isLoading: true });
     axios
       .get("http://localhost:5000/recipes/", {
