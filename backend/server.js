@@ -20,6 +20,8 @@ connection.once("open", () => {
   console.log("MongoDB connection established.");
 });
 
+app.use(express.static(path.join(__dirname, "../public", "build")));
+
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,6 +50,11 @@ const authRouter = require("./routes/auth");
 app.use("/auth", authRouter);
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
+
+app.get("*", (req, res) => {
+  console.log(__dirname + "../public/build/index.html");
+  res.sendFile(path.join(__dirname + "../public/build/index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port:${port}`);
