@@ -27,6 +27,19 @@ export default class MyRecipes extends Component {
         />
       );
     });
-    return <div className="user-recipes">{userRecipeItems}</div>;
+    return (
+      <div className="user-recipes-wrapper">
+        {this.props.recipes.length > 0 ? (
+          <div className="user-recipes">{userRecipeItems}</div>
+        ) : (
+          <div className="none-found-wrapper">
+            <div>
+              No recipes by this user yet. Click the account button to add a
+              recipe!
+            </div>
+          </div>
+        )}
+      </div>
+    );
   }
 }

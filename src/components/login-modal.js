@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-//TODO get state and onChange going for all the inputs
+
 export default class LoginModal extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +11,7 @@ export default class LoginModal extends Component {
     this.state = {
       loginEmail: "",
       loginPassword: "",
+      errorMessage: "",
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,9 +19,7 @@ export default class LoginModal extends Component {
   }
 
   handleSubmit() {
-    //check if user or email is already used? or is this just done at server side?
-
-    console.log(this.state.loginEmail, this.state.loginPassword);
+    debugger;
     axios
       .post(
         "http://localhost:5000/auth/login",
@@ -30,11 +29,16 @@ export default class LoginModal extends Component {
         },
         { withCredentials: true }
       )
-      .then(() => {
-        this.setState({ loginEmail: "", loginPassword: "" });
-        this.props.handleModalClose();
-
-        this.props.logInUser();
+      .then((res) => {
+        if (res.data.validCredentials) {
+          this.setState({ loginEmail: "", loginPassword: "" });
+          this.props.logInUser();
+          this.props.handleModalClose();
+        } else {
+          this.setState({
+            errorMessage: "Invalid username and password",
+          });
+        }
       })
       .catch((err) => console.log(err));
   }
@@ -56,13 +60,13 @@ export default class LoginModal extends Component {
         isOpen={this.props.modalIsOpen}
       >
         <div className="login-modal-grid">
-          <button
-            className="modal-close-button"
-            onClick={this.props.handleModalClose}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
-          <div className="label-and-input">
+          <div className="title-grid">
+            <div>LOGIN</div>
+            <button onClick={this.props.handleModalClose}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+          </div>
+          <div className="input-and-label">
             <label for="loginEmail">Username</label>
             <input
               className="login-input"
@@ -72,7 +76,7 @@ export default class LoginModal extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="label-and-input">
+          <div className="input-and-label">
             <label for="loginPassword">Password</label>
             <input
               className="login-input"
@@ -82,14 +86,13 @@ export default class LoginModal extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="login-input__button-wrapper">
-            <input
-              className="login-input__button"
-              type="submit"
-              value="Log In"
-              onClick={this.handleSubmit}
-            />
-          </div>
+          <div className="login-error-message">{this.state.errorMessage}</div>
+          <button
+            onClick={this.handleSubmit}
+            className="login-input__button-wrapper"
+          >
+            LOG IN
+          </button>
         </div>
       </ReactModal>
     );

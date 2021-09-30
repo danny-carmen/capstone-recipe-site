@@ -1,38 +1,107 @@
 .recipe-page-wrapper {
   width: 100vw;
-  height: calc(100vh - 68px);
+  height: 100%;
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
 }
 
 .recipe-page {
   display: grid;
   width: 60vw;
   grid-template-columns: [ingredients-s] 1fr [ingredients-e directions-s] 3fr [directions-e];
-  grid-template-rows: [info-t] max-content [info-b process-t] 1fr [process-b];
+  grid-template-rows: [info-t] max-content [info-b process-t] 1fr [process-b] 10px;
   padding-top: 68px;
   height: 100%;
+  gap: 10px;
 }
 
 .recipe-info {
   grid-column: ingredients-s/ingredients-e;
   grid-row: info-t/info-b;
+
+  // display: grid;
+  // grid-template-rows: [title-t] auto [title-b author-t] auto [author-b description-t] auto [description-b servings-t] auto [servings-b] ;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__title {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  &__author {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  &__description {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  &__servings {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  &__time {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
   // height: 400px;
+}
+
+.recipe-ingredients-wrapper {
+  height: 100%;
+  width: 100%;
+}
+.recipe-ingredients__title {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  border-bottom: 2px solid gray;
+  align-self: center;
 }
 
 .recipe-ingredients {
   grid-column: ingredients-s/ingredients-e;
   grid-row: process-t/process-b;
   overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__ingredient {
+    font-size: 1.25rem;
+    padding-top: 8px;
+  }
+}
+
+.recipe-directions-wrapper {
+  display: flex;
+}
+.recipe-directions__title {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+  border-bottom: 2px solid gray;
+  align-self: center;
 }
 
 .recipe-directions {
   grid-column: directions-s/directions-e;
   grid-row: process-t/process-b;
   overflow-y: scroll;
+  overflow-x: hidden;
 
   &__direction {
-    font-size: 24px;
+    font-size: 1.25rem;
+    padding-top: 8px;
   }
 }
 

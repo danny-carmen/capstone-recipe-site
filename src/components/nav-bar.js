@@ -10,8 +10,6 @@ export default class NavBar extends Component {
     this.handleAccountClick = this.handleAccountClick.bind(this);
   }
 
-  //TODO get these to be reactive
-
   handleAccountClick(e) {
     this.props.toggleAccountMenu();
   }

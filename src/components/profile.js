@@ -60,27 +60,15 @@ export default class Profile extends Component {
         <div className="selection-options">
           <button
             className={this.state.openWindow === "my-recipes" ? "selected" : ""}
-            onClick={this.handleMyRecipesClick}
           >
             MY RECIPES
           </button>
-          {/* <button
-            className={this.state.openWindow === "account" ? "selected" : ""}
-            onClick={this.handleMyAccountButtonClick}
-          >
-            MY ACCOUNT
-          </button> */}
         </div>
         <div className="flip-window">
           <MyRecipes
             recipes={this.state.userRecipes}
             reloadRecipes={this.getUserRecipes}
           />
-          {/* {this.state.openWindow === "account" ? (
-            <AccountInfo />
-          ) : (
-            <MyRecipes recipes={userRecipes} /> */}
-          {/* )} */}
         </div>
       </div>
     );

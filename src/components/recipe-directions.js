@@ -8,6 +8,7 @@ const RecipeDirections = (props) => {
   });
   return (
     <div className="recipe-directions">
+      <div className="recipe-directions__title">DIRECTIONS</div>
       <ol>{recipeDirections}</ol>
     </div>
   );

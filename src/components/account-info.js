@@ -22,11 +22,6 @@ export default class AccountInfo extends Component {
     });
   }
 
-  handleSubmit() {}
-  //TODO function for submit
-  //only change those items that are input
-  //extra validation for the password
-
   render() {
     return (
       <div className="account-info-wrapper">

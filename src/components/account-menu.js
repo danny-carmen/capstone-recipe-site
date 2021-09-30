@@ -22,8 +22,10 @@ class AccountMenu extends Component {
     this.handleRegisterModalClose = this.handleRegisterModalClose.bind(this);
     this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleAddRecipeModalClose = this.handleAddRecipeModalClose.bind(this);
-    this.checkLoginStatus = this.checkLoginStatus.bind(this);
+    // this.checkLoginStatus = this.checkLoginStatus.bind(this);
     this.logOutUser = this.logOutUser.bind(this);
+    this.logInUser = this.logInUser.bind(this);
+    this.closeAccountMenu = this.closeAccountMenu.bind(this);
   }
 
   handleLoginModalClose() {
@@ -32,14 +34,16 @@ class AccountMenu extends Component {
 
   handleLoginClick() {
     this.setState({ loginModalIsOpen: true });
+    this.closeAccountMenu();
   }
 
-  handleRegisterModalClose() {
+  handleRegisterModalClose(e) {
     this.setState({ registerModalIsOpen: false });
   }
 
   handleRegisterClick() {
     this.setState({ registerModalIsOpen: true });
+    this.closeAccountMenu();
   }
 
   handleAddRecipeModalClose() {
@@ -48,12 +52,13 @@ class AccountMenu extends Component {
 
   handleAddRecipeClick() {
     this.setState({ addRecipeModalIsOpen: true });
+    this.closeAccountMenu();
   }
 
-  checkLoginStatus() {
-    debugger;
-    this.props.checkLoginStatus();
-  }
+  // checkLoginStatus() {
+
+  //   this.props.checkLoginStatus();
+  // }
 
   logOutUser() {
     axios
@@ -66,6 +71,14 @@ class AccountMenu extends Component {
         this.props.checkLoginStatus();
       })
       .catch((err) => console.log(err));
+  }
+
+  logInUser() {
+    this.props.checkLoginStatus();
+  }
+
+  closeAccountMenu() {
+    this.props.closeAccountMenu();
   }
 
   render() {
@@ -86,7 +99,11 @@ class AccountMenu extends Component {
                 : "account-menu account-menu__closed"
             }
           >
-            <Link className="account-button" to="/profile">
+            <Link
+              onClick={() => this.closeAccountMenu()}
+              className="account-button"
+              to="/profile"
+            >
               Profile
             </Link>
             <button
@@ -95,7 +112,13 @@ class AccountMenu extends Component {
             >
               Add Recipe
             </button>
-            <button onClick={this.logOutUser} className="account-button">
+            <button
+              onClick={() => {
+                this.logOutUser();
+                this.closeAccountMenu();
+              }}
+              className="account-button"
+            >
               Log Out
             </button>
           </div>
@@ -106,12 +129,13 @@ class AccountMenu extends Component {
         <div>
           <LoginModal
             handleModalClose={this.handleLoginModalClose}
-            logInUser={this.props.checkLoginStatus()}
+            logInUser={this.logInUser}
             modalIsOpen={this.state.loginModalIsOpen}
           />
           <RegisterModal
             handleModalClose={this.handleRegisterModalClose}
             modalIsOpen={this.state.registerModalIsOpen}
+            openLogin={this.handleLoginClick}
           />
 
           <div

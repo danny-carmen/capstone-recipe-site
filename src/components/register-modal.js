@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-//TODO get state and onChange going for all the inputs
+
 export default class RegisterModal extends Component {
   constructor() {
     super();
@@ -13,12 +13,31 @@ export default class RegisterModal extends Component {
       registerEmail: "",
       registerPassword: "",
       registerRetypePassword: "",
+      errorMessage: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit() {
+    if (this.state.registerUsername === "") {
+      this.setState({ errorMessage: "Please provide a username" });
+      return;
+    }
+
+    if (this.state.registerEmail === "") {
+      this.setState({ errorMessage: "Please provide an email" });
+      return;
+    }
+
+    if (
+      this.state.registerPassword !== this.state.registerRetypePassword &&
+      this.state.registerPassword !== ""
+    ) {
+      this.setState({ errorMessage: "Passwords do not match" });
+      return;
+    }
+
     //check if user or email is already used? or is this just done at server side?
     if (this.state.registerPassword === this.state.registerRetypePassword) {
       axios
@@ -27,8 +46,19 @@ export default class RegisterModal extends Component {
           email: this.state.registerEmail,
           password: this.state.registerPassword,
         })
-        .then(console.log("User Registered!"))
+        .then((res) => {
+          if (!res.data.isUserUnique) {
+            this.setState({
+              errorMessage:
+                "Username is already taken. Please choose a new username.",
+            });
+          } else {
+            this.props.openLogin();
+            this.props.handleModalClose();
+          }
+        })
         .catch((err) => console.log(err));
+    } else {
     }
   }
 
@@ -43,20 +73,20 @@ export default class RegisterModal extends Component {
     return (
       <ReactModal
         className="register-modal"
-        onRequestClose={() => {
+        onRequestClose={(e) => {
           this.props.handleModalClose();
         }}
         isOpen={this.props.modalIsOpen}
       >
         <div className="register-modal-grid">
-          <button
-            className="modal-close-button"
-            onClick={this.props.handleModalClose}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
+          <div className="title-grid">
+            <div>REGISTER</div>
+            <button onClick={this.props.handleModalClose}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+          </div>
 
-          <div className="label-and-input">
+          <div className="input-and-label">
             <label for="registerusername">Username</label>
             <input
               className="register-input"
@@ -66,7 +96,7 @@ export default class RegisterModal extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="label-and-input">
+          <div className="input-and-label">
             <label for="registerEmail">Email</label>
             <input
               className="register-input"
@@ -76,7 +106,7 @@ export default class RegisterModal extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="label-and-input">
+          <div className="input-and-label">
             <label for="registerPassword">Password</label>
             <input
               className="register-input"
@@ -86,8 +116,8 @@ export default class RegisterModal extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <div className="label-and-input">
-            <label for="registerRetypePassword">Retype Password</label>
+          <div className="input-and-label">
+            <label for="registerRetypePassword">Confirm Password</label>
             <input
               className="register-input"
               type="password"
@@ -95,6 +125,9 @@ export default class RegisterModal extends Component {
               name="registerRetypePassword"
               onChange={this.handleChange}
             />
+          </div>
+          <div className="register-error-message">
+            {this.state.errorMessage}
           </div>
           <div className="register-input__button-wrapper">
             <input

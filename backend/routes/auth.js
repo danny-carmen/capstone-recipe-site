@@ -9,47 +9,28 @@ const bodyParser = require("body-parser");
 
 var jsonParser = bodyParser.json();
 
-// router.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     failureRedirect: "/login-failure",
-//     successRedirect: "login-success",
-//   }),
-//   (res, req, next) => {}
-// );
-
-// router.post(
-//   "/login",
-//   jsonParser,
-//   (req, res, next) => {
-//     console.log(req.body);
-//     next();
-//   },
-//   passport.authenticate("local", { session: true }),
-//   (req, res, next) => {}
-// );
-
 router.post("/login", function (req, res, next) {
-  passport.authenticate("local", function (error, user, info) {
-    if (error) {
-      return res.status(500).json({
-        message: error || "Something happend",
-        error: error.message || "Server error",
-      });
+  console.log("enteredlogin");
+  passport.authenticate("local", function (err, user, info) {
+    if (err) {
+      throw err;
     }
+    console.log(user);
+    if (!user) {
+      res.json({ validCredentials: false });
+    } else {
+      req.logIn(user, function (error, data) {
+        if (error) {
+          return res.status(500).json({
+            message: error || "Server error",
+            error: error.message || "Server error",
+          });
+        }
+      });
+      user.isAuthenticated = true;
 
-    req.logIn(user, function (error, data) {
-      if (error) {
-        return res.status(500).json({
-          message: error || "Something happend",
-          error: error.message || "Server error",
-        });
-      }
-    });
-
-    user.isAuthenticated = true;
-
-    return res.send();
+      return res.json({ validCredentials: true });
+    }
   })(req, res, next);
 });
 
@@ -59,8 +40,6 @@ router.get("/checkLoginStatus", jsonParser, (req, res, next) => {
   } else {
     res.json({ isValidUser: "NOT_LOGGED_IN" });
   }
-
-  // res.json({ message: "It worked", user: req.user });
 });
 
 router.get("/getUserName", jsonParser, (req, res, next) => {
@@ -78,24 +57,38 @@ router.get("/logout", (req, res) => {
   res.json({ status: "Logged Out" });
 });
 
-router.post("/register", jsonParser, (req, res) => {
-  const saltHash = passwordUtils.genPassword(req.body.password);
+router.post("/register", jsonParser, (req, res, err) => {
+  if (req.body.password !== "") {
+    User.findOne({ username: req.body.username })
+      .then((foundUser) => {
+        console.log(foundUser);
+        if (foundUser) {
+          res.json({ isUserUnique: false });
+        } else {
+          const saltHash = passwordUtils.genPassword(req.body.password);
 
-  const salt = saltHash.salt;
-  const hash = saltHash.hash;
+          const salt = saltHash.salt;
+          const hash = saltHash.hash;
 
-  const newUser = new User({
-    username: req.body.username,
-    hash: hash,
-    salt: salt,
-    email: req.body.email,
-  });
+          const newUser = new User({
+            username: req.body.username,
+            hash: hash,
+            salt: salt,
+            email: req.body.email,
+          });
 
-  newUser.save().then((user) => {
-    console.log(user);
-  });
+          newUser
+            .save()
+            .then((user) => {})
+            .catch((err) => console.log(err));
 
-  res.redirect("/login");
+          res.json({ isUserUnique: true });
+        }
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
 });
 
 module.exports = router;

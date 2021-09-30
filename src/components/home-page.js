@@ -13,6 +13,7 @@ export default class HomePage extends Component {
       scrollPosition: 0,
       boardItems: [],
       totalItems: 0,
+      currentSearch: "",
     };
 
     this.updateBoardFromSearch = this.updateBoardForSearch.bind(this);
@@ -27,7 +28,6 @@ export default class HomePage extends Component {
       .get("http://localhost:5000/recipes/", {
         params: {
           setNumber: this.state.scrollPosition,
-          totalRecipesOnBoard: this.state.boardItems.length,
         },
       })
       .then((res) => {
@@ -42,12 +42,21 @@ export default class HomePage extends Component {
       });
   }
 
-  updateBoardForSearch(query) {
-    this.setState({ isSearch: true, isLoading: true, scrollPosition: 0 });
-    console.log("http://localhost:5000/recipes/search=" + query);
+  updateBoardForSearch(searchQuery) {
+    debugger;
+    this.setState({
+      isSearch: true,
+      isLoading: true,
+      scrollPosition: 0,
+      totalItems: 0,
+      currentSearch: searchQuery,
+    });
+    console.log("http://localhost:5000/recipes/search=" + searchQuery);
     axios
-      .get("http://localhost:5000/recipes/search=" + query, {
-        params: { setNumber: this.state.scrollPosition },
+      .get("http://localhost:5000/recipes/search=" + searchQuery, {
+        params: {
+          setNumber: 0,
+        },
       })
       .then((res) => {
         this.setState({
@@ -64,13 +73,19 @@ export default class HomePage extends Component {
   }
 
   updateBoardForAllRecipes() {
-    this.setState({ isLoading: true, isSearch: false, scrollPosition: 0 });
+    this.setState({
+      isLoading: true,
+      isSearch: false,
+      scrollPosition: 0,
+      totalItems: 0,
+      currentSearch: "",
+      boardItems: [],
+    });
 
     axios
       .get("http://localhost:5000/recipes/", {
         params: {
-          setNumber: this.state.scrollPosition,
-          totalRecipesOnBoard: this.state.boardItems.length,
+          setNumber: 0,
         },
       })
       .then((res) => {
@@ -85,7 +100,7 @@ export default class HomePage extends Component {
       });
   }
 
-  loadMoreRecipesFromSearch(query) {
+  loadMoreRecipesFromSearch() {
     console.log("Loading Search recipes - ALl");
     if (
       !this.state.isLoading &&
@@ -93,12 +108,16 @@ export default class HomePage extends Component {
     ) {
       this.setState({ isLoading: true });
       axios
-        .get("http://localhost:5000/recipes/search=" + query, {
-          params: {
-            setNumber: this.state.scrollPosition + 1,
-          },
-        })
+        .get(
+          "http://localhost:5000/recipes/search=" + this.state.currentSearch,
+          {
+            params: {
+              setNumber: this.state.scrollPosition + 1,
+            },
+          }
+        )
         .then((res) => {
+          debugger;
           this.setState({
             boardItems: this.state.boardItems.concat(res.data.recipeArray),
             scrollPosition: this.state.scrollPosition + 1,
@@ -138,6 +157,7 @@ export default class HomePage extends Component {
   }
 
   scrollToLoad(query) {
+    debugger;
     if (this.state.isSearch) {
       this.loadMoreRecipesFromSearch(query);
     } else {
@@ -156,6 +176,9 @@ export default class HomePage extends Component {
         <RecipeBoard
           data={this.state.boardItems}
           scrollToLoad={this.scrollToLoad}
+          isLoading={this.state.isLoading}
+          isSearch={this.state.isSearch}
+          currentSearch={this.state.currentSearch}
         />
       </div>
     );

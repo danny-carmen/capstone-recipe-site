@@ -6,7 +6,8 @@ import RecipePage from "./components/recipe-page";
 import Profile from "./components/profile";
 import React, { Component } from "react";
 import axios from "axios";
-//TODO need a nomatch
+import NoMatch from "./components/nomatch";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -62,11 +63,14 @@ export default class App extends Component {
             {this.state.loggedInStatus === "LOGGED_IN" ? (
               <Route path="/profile" component={Profile} />
             ) : null}
+
+            <Route component={NoMatch} />
           </Switch>
           <AccountMenu
             loggedInStatus={this.state.loggedInStatus}
             checkLoginStatus={this.checkLoginStatus}
             accountMenuOpen={this.state.accountMenuOpen}
+            closeAccountMenu={this.toggleAccountMenu}
           />
         </Router>
       </div>

@@ -20,6 +20,8 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
+  console.log("starting search process");
+  console.log(req.params.criteria);
   Recipe.countDocuments(
     {
       $or: [
@@ -34,6 +36,8 @@ router.route("/search=:criteria").get((req, res) => {
       ],
     },
     function (err, count) {
+      console.log("Count: ", count);
+      console.log(req.query);
       Recipe.find({
         $or: [
           { recipeTitle: { $regex: req.params.criteria, $options: "i" } },
@@ -50,6 +54,8 @@ router.route("/search=:criteria").get((req, res) => {
         .select(
           "recipeTitle recipeAuthor recipeImage recipeServings recipeActiveTime recipeTotalTime"
         )
+        .limit(12)
+        .skip(12 * req.query.setNumber)
         .then((recipes) => {
           res.json({ recipeArray: recipes, totalRecipeCount: count });
         })
@@ -114,7 +120,6 @@ router.route("/add").post((req, res) => {
 });
 
 router.route("/update/:id").post((req, res) => {
-  console.log(req);
   Recipe.findById(req.params.id)
     .then((recipe) => {
       recipe.recipeVersion = req.body.recipeVersion || recipe.recipeVersion;

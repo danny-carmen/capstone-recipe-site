@@ -23,34 +23,65 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-rows: [close-t] min-content [close-b email-t] 90px [email-b password-t] 90px [password-b buttons-t] 60px [buttons-b];
+  grid-template-rows: [close-t] min-content [close-b email-t] auto [email-b password-t] auto [password-b error-t] 20px [error-b buttons-t] 60px [buttons-b];
+  grid-template-columns: [s] auto [e];
+  row-gap: 10px;
+  .title-grid {
+    grid-row: close-t/close-b;
+    grid-column: s/e;
 
-  label {
-    font-size: 24px;
-  }
-  .login-input {
-    width: 97%;
-    border-radius: 20px;
-    height: 36px;
-    border: 2px solid lightgray;
-
-    &__button-wrapper {
-      display: flex;
-      justify-content: space-between;
+    div {
       align-self: center;
+      grid-row: s/e;
+      grid-column: s/e;
+
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+  .input-and-label {
+    display: grid;
+    grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+
+    label {
+      grid: label-t/label-b;
+      font-size: 14px;
+      justify-self: center;
     }
 
-    &__button {
-      border-radius: 20px;
-      width: 100%;
-      height: 40px;
+    input {
+      grid-row: input-t/input-b;
+      height: 24px;
+      font-size: 20px;
       border: none;
-      margin-right: 10px;
-      margin-left: 10px;
-      font-size: 24px;
-      background-color: $primary-color;
-      color: $light-text;
+      border-bottom: 2px solid lightgray;
+      text-align: center;
+      outline: none;
     }
+
+    input:focus {
+      border-bottom: 2px solid gray;
+    }
+  }
+  .login-input__button-wrapper {
+    align-self: center;
+    grid-row: buttons-t/buttons-b;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    border: none;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 24px;
+    background-color: $primary-color;
+    color: $light-text;
+  }
+  .login-error-message {
+    grid-row: error-t/error-b;
+    justify-self: center;
+    color: red;
+    font-style: italic;
   }
 }
 
@@ -70,22 +101,56 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-rows: [close-t] min-content [close-b name-t] 90px [name-b username-t] 90px [username-b email-t] 90px [email-b password-t] 90px [password-b repassword-t] 90px [repassword-b buttons-t] 60px [buttons-b];
+  grid-template-rows: [close-t] min-content [close-b username-t] auto [username-b email-t] auto [email-b password-t] auto [password-b repassword-t] auto [repassword-b error-t] 20px [error-b buttons-t] 60px [buttons-b];
+  grid-template-columns: [s] auto [e];
   justify-items: center;
-  label {
-    font-size: 24px;
+  row-gap: 10px;
+
+  .title-grid {
+    width: 100%;
+    grid-row: close-t/close-b;
+    grid-column: s/e;
+
+    div {
+      align-self: center;
+      grid-row: s/e;
+      grid-column: s/e;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .input-and-label {
+    display: grid;
+    grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+
+    label {
+      grid: label-t/label-b;
+      font-size: 14px;
+      justify-self: center;
+    }
+
+    input {
+      grid-row: input-t/input-b;
+      height: 24px;
+      font-size: 20px;
+      border: none;
+      border-bottom: 2px solid lightgray;
+      text-align: center;
+      outline: none;
+    }
+
+    input:focus {
+      border-bottom: 2px solid gray;
+    }
   }
   .register-input {
-    width: 97%;
-    border-radius: 20px;
-    height: 36px;
-    border: 2px solid lightgray;
-
     &__button-wrapper {
       display: flex;
       justify-content: space-between;
       align-self: center;
       width: 100%;
+      grid-row: buttons-t/buttons-b;
     }
 
     &__button {
@@ -94,11 +159,17 @@
       width: 100%;
       height: 40px;
       border: none;
-
+      cursor: pointer;
       font-size: 24px;
       background-color: $primary-color;
       color: $light-text;
     }
+  }
+  .register-error-message {
+    grid-row: error-t/error-b;
+    justify-self: center;
+    color: red;
+    font-style: italic;
   }
 }
 
@@ -158,8 +229,10 @@
   }
 
   .add-ingredient-inputs {
+    width: 100%;
     padding: 10px;
-    display: flex;
+    display: grid;
+    grid-template-columns: [quantity-s] 60px [quantity-e unit-s] 60px [unit-e ingredient-s] 3fr [ingredient-e button-s] max-content [button-e];
     gap: 10px;
     align-self: center;
   }
@@ -168,10 +241,10 @@
     margin-top: 10px;
     justify-self: center;
     width: max-content;
-
+    cursor: pointer;
     font-size: 20px;
     background-color: $primary-color;
-
+    grid-column: button-s/button-e;
     color: $light-text;
     border-radius: 24px;
     border: none;
@@ -184,6 +257,16 @@
 .add-ingredient-input {
   display: grid;
   grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+
+  &__quantity {
+    grid-column: quantity-s/quantity-e;
+  }
+  &__unit {
+    grid-column: unit-s/unit-e;
+  }
+  &__ingredient {
+    grid-column: ingredient-s/ingredient-e;
+  }
 
   label {
     grid: label-t/label-b;
@@ -206,7 +289,7 @@
   }
 
   .quantity {
-    width: 40px;
+    width: 60px;
   }
 
   .unit {
@@ -228,8 +311,10 @@
     display: flex;
     flex-direction: column;
     margin-right: 5px;
+    cursor: pointer;
   }
   button {
+    cursor: pointer;
     outline: none;
     background-color: transparent;
     border: none;
@@ -315,11 +400,13 @@
     }
 
     .up-down-buttons {
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       margin-right: 5px;
     }
     button {
+      cursor: pointer;
       outline: none;
       background-color: transparent;
       border: none;
@@ -328,6 +415,7 @@
 }
 
 .add-recipe-button {
+  cursor: pointer;
   // width: 80vw;
   grid-row: submit-t/submit-b;
   grid-column: start/end;
@@ -469,6 +557,7 @@
   }
 
   button {
+    cursor: pointer;
     grid-row: s/e;
     grid-column: s/e;
     background-color: transparent;

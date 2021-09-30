@@ -28,7 +28,6 @@ const config = {
 const S3Client = new S3(config);
 
 const handleUpload = async (file, newFileName) => {
-  debugger;
   S3Client.uploadFile(file, newFileName)
     .then((data) => {
       console.log(data);
@@ -197,7 +196,7 @@ export default class AddRecipeModal extends Component {
               errorMessage: "",
               recipeImage: "",
             });
-            debugger;
+
             this.reloadRecipesAndCloseModal();
           })
           .catch((err) => console.log(err));
@@ -207,7 +206,7 @@ export default class AddRecipeModal extends Component {
 
   submitEditedRecipe(recipeObject) {
     //need to check if image changed
-    debugger;
+
     if (this.props.recipe.recipeImage !== this.state.recipeImage) {
       S3Client.deleteFile(this.props.recipe._id + ".jpeg")
         .then((data) => {
@@ -226,7 +225,6 @@ export default class AddRecipeModal extends Component {
     }
   }
   updateDatabase(recipeObject) {
-    debugger;
     axios
       .post(
         "http://localhost:5000/recipes/update/" + this.props.recipe._id,
@@ -294,10 +292,7 @@ export default class AddRecipeModal extends Component {
           <div className="add-recipe-modal-grid">
             <div className="title-grid">
               <div className="title">ADD RECIPE</div>
-              <button
-                className="modal-close-button"
-                onClick={this.props.handleModalClose}
-              >
+              <button onClick={this.props.handleModalClose}>
                 <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>

@@ -22,14 +22,29 @@ export default class RecipeBoard extends Component {
   }
 
   componentDidMount() {
-    this.scrollRef.current.addEventListener("scroll", this.listenScrollEvent);
+    if (this.props.data.length > 0) {
+      this.scrollRef.current.addEventListener("scroll", this.listenScrollEvent);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    debugger;
+    if (prevProps.currentSearch !== this.props.currentSearch) {
+      debugger;
+      this.scrollRef.current.scrollTop = 0;
+    }
+    if (this.props.data.length > 0) {
+      this.scrollRef.current.addEventListener("scroll", this.listenScrollEvent);
+    }
   }
 
   componentWillUnmount() {
-    this.scrollRef.current.removeEventListener(
-      "scroll",
-      this.listenScrollEvent
-    );
+    if (this.props.data.length > 0) {
+      this.scrollRef.current.removeEventListener(
+        "scroll",
+        this.listenScrollEvent
+      );
+    }
   }
 
   render() {
@@ -40,10 +55,25 @@ export default class RecipeBoard extends Component {
     return (
       <div className="recipe-board-wrapper">
         <div className="spacer-search-bar"></div>
-        <div ref={this.scrollRef} className="recipe-board-grid">
-          <div className="recipe-board">{boardItems}</div>
-          <div className="spacer50"></div>
-        </div>
+
+        {this.props.data.length > 0 ? (
+          <div ref={this.scrollRef} className="recipe-board-grid">
+            <div className="recipe-board">{boardItems}</div>
+            <div className="spacer50"></div>
+          </div>
+        ) : this.props.isSearch ? (
+          <div className="none-found-wrapper">
+            <div>
+              No recipes meeting that search were found. Please try another
+              search
+            </div>
+          </div>
+        ) : (
+          <div ref={this.scrollRef} className="recipe-board-grid">
+            <div className="recipe-board">{boardItems}</div>
+            <div className="spacer50"></div>
+          </div>
+        )}
       </div>
     );
   }
