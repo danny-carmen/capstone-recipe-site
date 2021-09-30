@@ -39,7 +39,11 @@ export default class App extends Component {
       .catch((err) => console.log(err));
   }
 
-  toggleAccountMenu() {
+  toggleAccountMenu(close) {
+    if (close) {
+      this.setState({ accountMenuOpen: false });
+      return;
+    }
     this.setState({ accountMenuOpen: !this.state.accountMenuOpen });
   }
 

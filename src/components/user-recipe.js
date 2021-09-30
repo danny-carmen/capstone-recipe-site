@@ -34,7 +34,6 @@ export default class UserRecipe extends Component {
   }
 
   handleDeleteRecipeClick() {
-    debugger;
     axios
       .delete("http://localhost:5000/recipes/" + this.props.recipe._id)
       .then(this.reloadRecipes())
@@ -42,7 +41,6 @@ export default class UserRecipe extends Component {
   }
 
   reloadRecipes() {
-    debugger;
     this.props.reloadRecipes();
   }
 

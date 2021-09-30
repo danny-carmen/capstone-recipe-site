@@ -10,12 +10,11 @@ const bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 
 router.post("/login", function (req, res, next) {
-  console.log("enteredlogin");
   passport.authenticate("local", function (err, user, info) {
     if (err) {
       throw err;
     }
-    console.log(user);
+
     if (!user) {
       res.json({ validCredentials: false });
     } else {
@@ -61,7 +60,6 @@ router.post("/register", jsonParser, (req, res, err) => {
   if (req.body.password !== "") {
     User.findOne({ username: req.body.username })
       .then((foundUser) => {
-        console.log(foundUser);
         if (foundUser) {
           res.json({ isUserUnique: false });
         } else {

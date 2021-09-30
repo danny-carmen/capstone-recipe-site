@@ -34,7 +34,7 @@ class AccountMenu extends Component {
 
   handleLoginClick() {
     this.setState({ loginModalIsOpen: true });
-    this.closeAccountMenu();
+    this.closeAccountMenu(true);
   }
 
   handleRegisterModalClose(e) {
@@ -43,7 +43,7 @@ class AccountMenu extends Component {
 
   handleRegisterClick() {
     this.setState({ registerModalIsOpen: true });
-    this.closeAccountMenu();
+    this.closeAccountMenu(true);
   }
 
   handleAddRecipeModalClose() {
@@ -52,7 +52,7 @@ class AccountMenu extends Component {
 
   handleAddRecipeClick() {
     this.setState({ addRecipeModalIsOpen: true });
-    this.closeAccountMenu();
+    this.closeAccountMenu(true);
   }
 
   // checkLoginStatus() {
@@ -78,7 +78,7 @@ class AccountMenu extends Component {
   }
 
   closeAccountMenu() {
-    this.props.closeAccountMenu();
+    this.props.closeAccountMenu(true);
   }
 
   render() {

@@ -14,7 +14,6 @@ export default class MyRecipes extends Component {
   }
 
   reloadRecipes() {
-    debugger;
     this.props.reloadRecipes();
   }
 

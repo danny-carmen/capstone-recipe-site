@@ -210,7 +210,6 @@ export default class AddRecipeModal extends Component {
     if (this.props.recipe.recipeImage !== this.state.recipeImage) {
       S3Client.deleteFile(this.props.recipe._id + ".jpeg")
         .then((data) => {
-          debugger;
           console.log(data);
           S3Client.uploadFile(this.state.recipeImage, this.props.recipe._id)
             .then((data) => {
@@ -231,7 +230,6 @@ export default class AddRecipeModal extends Component {
         recipeObject
       )
       .then((res) => {
-        debugger;
         console.log(res);
         this.reloadRecipesAndCloseModal();
       })

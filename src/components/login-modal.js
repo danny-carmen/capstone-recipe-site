@@ -19,7 +19,6 @@ export default class LoginModal extends Component {
   }
 
   handleSubmit() {
-    debugger;
     axios
       .post(
         "http://localhost:5000/auth/login",

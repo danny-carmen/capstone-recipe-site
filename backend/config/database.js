@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const conn = process.env.ATLAS_URI;
 
-const connection = mongoose.createConnection(conn, {
+const connection = mongoose.createConnection(process.env.ATLAS_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

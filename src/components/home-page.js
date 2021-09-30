@@ -43,7 +43,6 @@ export default class HomePage extends Component {
   }
 
   updateBoardForSearch(searchQuery) {
-    debugger;
     this.setState({
       isSearch: true,
       isLoading: true,
@@ -117,7 +116,6 @@ export default class HomePage extends Component {
           }
         )
         .then((res) => {
-          debugger;
           this.setState({
             boardItems: this.state.boardItems.concat(res.data.recipeArray),
             scrollPosition: this.state.scrollPosition + 1,
@@ -157,7 +155,6 @@ export default class HomePage extends Component {
   }
 
   scrollToLoad(query) {
-    debugger;
     if (this.state.isSearch) {
       this.loadMoreRecipesFromSearch(query);
     } else {

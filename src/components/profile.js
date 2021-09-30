@@ -39,14 +39,12 @@ export default class Profile extends Component {
   }
 
   getUserRecipes() {
-    debugger;
     axios
       .get("http://localhost:5000/auth/getUserName", { withCredentials: true })
       .then((res) => {
         axios
           .get("http://localhost:5000/recipes/user/" + res.data)
           .then((res) => {
-            debugger;
             console.log(res);
             this.setState({ userRecipes: res.data });
           })
