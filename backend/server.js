@@ -21,7 +21,7 @@ connection.once("open", () => {
   console.log("MongoDB connection established.");
 });
 
-app.use(express.static(path.join(__dirname, "/../public")));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
@@ -54,7 +54,7 @@ app.use("/users", usersRouter);
 
 app.get("*", (req, res) => {
   console.log(path.join("Got to the start!"));
-  res.sendFile(path.join(__dirname + "/../public/index.html"));
+  res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
 app.listen(port, () => {
