@@ -13,16 +13,14 @@ import { DropzoneComponent } from "react-dropzone-component";
 import axios from "axios";
 import S3 from "aws-s3";
 
-import * as GB from "../../globalvariables";
-
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 const config = {
-  bucketName: GB.S3B,
-  region: GB.R,
-  accessKeyId: GB.AK,
-  secretAccessKey: GB.SAK,
+  bucketName: process.env.S3B,
+  region: process.env.R,
+  accessKeyId: process.env.AK,
+  secretAccessKey: process.env.SAK,
 };
 
 const S3Client = new S3(config);
