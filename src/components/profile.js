@@ -40,10 +40,12 @@ export default class Profile extends Component {
 
   getUserRecipes() {
     axios
-      .get("http://localhost:5000/auth/getUserName", { withCredentials: true })
+      .get("https://ddc-tastable.herokuapp.com/auth/getUserName", {
+        withCredentials: true,
+      })
       .then((res) => {
         axios
-          .get("http://localhost:5000/recipes/user/" + res.data)
+          .get("https://ddc-tastable.herokuapp.com/recipes/user/" + res.data)
           .then((res) => {
             console.log(res);
             this.setState({ userRecipes: res.data });

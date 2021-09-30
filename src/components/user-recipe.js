@@ -35,7 +35,9 @@ export default class UserRecipe extends Component {
 
   handleDeleteRecipeClick() {
     axios
-      .delete("http://localhost:5000/recipes/" + this.props.recipe._id)
+      .delete(
+        "https://ddc-tastable.herokuapp.com/recipes/" + this.props.recipe._id
+      )
       .then(this.reloadRecipes())
       .catch((err) => console.log(err));
   }

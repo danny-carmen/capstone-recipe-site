@@ -62,7 +62,7 @@ class AccountMenu extends Component {
 
   logOutUser() {
     axios
-      .get("http://localhost:5000/auth/logout", {
+      .get("https://ddc-tastable.herokuapp.com/auth/logout", {
         withCredentials: true,
       })
       .then((res) => {

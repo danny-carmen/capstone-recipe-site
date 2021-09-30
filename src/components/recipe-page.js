@@ -18,9 +18,11 @@ export default class RecipePage extends Component {
   }
 
   componentWillMount() {
-    console.log("http://localhost:5000/recipes/" + this.props.match.params.id);
     axios
-      .get("http://localhost:5000/recipes/" + this.props.match.params.id)
+      .get(
+        "https://ddc-tastable.herokuapp.com/recipes/" +
+          this.props.match.params.id
+      )
       .then((res) => {
         this.setState({ recipe: res.data, isLoaded: true });
       })

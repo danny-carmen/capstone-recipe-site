@@ -26,7 +26,7 @@ export default class HomePage extends Component {
     console.log("Getting Recipes");
     this.setState({ isLoading: true });
     axios
-      .get("http://localhost:5000/recipes/", {
+      .get("https://ddc-tastable.herokuapp.com/recipes/", {
         params: {
           setNumber: this.state.scrollPosition,
         },
@@ -51,9 +51,11 @@ export default class HomePage extends Component {
       totalItems: 0,
       currentSearch: searchQuery,
     });
-    console.log("http://localhost:5000/recipes/search=" + searchQuery);
+    console.log(
+      "https://ddc-tastable.herokuapp.com/recipes/search=" + searchQuery
+    );
     axios
-      .get("http://localhost:5000/recipes/search=" + searchQuery, {
+      .get("https://ddc-tastable.herokuapp.com/recipes/search=" + searchQuery, {
         params: {
           setNumber: 0,
         },
@@ -83,7 +85,7 @@ export default class HomePage extends Component {
     });
 
     axios
-      .get("http://localhost:5000/recipes/", {
+      .get("https://ddc-tastable.herokuapp.com/recipes/", {
         params: {
           setNumber: 0,
         },
@@ -109,7 +111,8 @@ export default class HomePage extends Component {
       this.setState({ isLoading: true });
       axios
         .get(
-          "http://localhost:5000/recipes/search=" + this.state.currentSearch,
+          "https://ddc-tastable.herokuapp.com/recipes/search=" +
+            this.state.currentSearch,
           {
             params: {
               setNumber: this.state.scrollPosition + 1,
@@ -137,7 +140,7 @@ export default class HomePage extends Component {
     ) {
       this.setState({ isLoading: true });
       axios
-        .get("http://localhost:5000/recipes/", {
+        .get("https://ddc-tastable.herokuapp.com/recipes/", {
           params: {
             setNumber: this.state.scrollPosition + 1,
           },

@@ -41,7 +41,7 @@ export default class RegisterModal extends Component {
     //check if user or email is already used? or is this just done at server side?
     if (this.state.registerPassword === this.state.registerRetypePassword) {
       axios
-        .post("http://localhost:5000/auth/register", {
+        .post("https://ddc-tastable.herokuapp.com/auth/register", {
           username: this.state.registerUsername,
           email: this.state.registerEmail,
           password: this.state.registerPassword,

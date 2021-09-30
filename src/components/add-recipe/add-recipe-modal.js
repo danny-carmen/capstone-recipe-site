@@ -112,7 +112,9 @@ export default class AddRecipeModal extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/auth/getUserName", { withCredentials: true })
+      .get("https://ddc-tastable.herokuapp.com/auth/getUserName", {
+        withCredentials: true,
+      })
       .then((res) => {
         this.setState({ recipeAuthor: res.data });
       })
@@ -170,18 +172,21 @@ export default class AddRecipeModal extends Component {
 
   submitNewRecipe(recipeObject) {
     axios
-      .post("http://localhost:5000/recipes/add", recipeObject)
+      .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
         let documentId = res1.data;
         handleUpload(this.state.recipeImage, documentId);
 
         axios
-          .post("http://localhost:5000/recipes/update/" + documentId, {
-            recipeImage:
-              "https://tastable-recipe-images.s3.us-west-2.amazonaws.com/" +
-              documentId +
-              ".jpeg",
-          })
+          .post(
+            "https://ddc-tastable.herokuapp.com/recipes/update/" + documentId,
+            {
+              recipeImage:
+                "https://tastable-recipe-images.s3.us-west-2.amazonaws.com/" +
+                documentId +
+                ".jpeg",
+            }
+          )
           .then(() => {
             this.setState({
               recipeTitle: "",
@@ -224,7 +229,8 @@ export default class AddRecipeModal extends Component {
   updateDatabase(recipeObject) {
     axios
       .post(
-        "http://localhost:5000/recipes/update/" + this.props.recipe._id,
+        "https://ddc-tastable.herokuapp.com/recipes/update/" +
+          this.props.recipe._id,
         recipeObject
       )
       .then((res) => {

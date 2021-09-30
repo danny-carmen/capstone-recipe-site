@@ -23,8 +23,12 @@ connection.once("open", () => {
 
 app.use(express.static(path.join(__dirname, "/../build")));
 
+// app.use(cors({ origin: "*", credentials: true }));
 app.use(
-  cors({ origin: "https://ddc-tastable.herokuapp.com/", credentials: true })
+  cors({
+    origin: ["https://ddc-tastable.herokuapp.com/", "http://localhost:3000"],
+    credentials: true,
+  })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

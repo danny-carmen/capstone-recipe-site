@@ -27,7 +27,7 @@ export default class App extends Component {
 
   checkLoginStatus() {
     axios
-      .get("http://localhost:5000/auth/checkLoginStatus", {
+      .get("https://ddc-tastable.herokuapp.com/auth/checkLoginStatus", {
         withCredentials: true,
       })
       .then((res) => {
