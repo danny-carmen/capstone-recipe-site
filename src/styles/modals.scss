@@ -206,12 +206,14 @@
     grid-row: info-t/info-b;
     grid-column: start/end;
     flex-direction: column;
+    width: 100%;
   }
 }
 
 .directions {
   grid-row: directions-t/directions-b;
   grid-column: start/end;
+  width: 100%;
   // width: 80vw;
 }
 .add-ingredient {
@@ -221,6 +223,7 @@
   grid-column: start/end;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 
   .ingredient-list {
     display: flex;
@@ -258,15 +261,19 @@
 .add-ingredient-input {
   display: grid;
   grid-template-rows: [input-t] auto [input-b label-t] auto [label-b];
+  width: 100%;
 
   &__quantity {
     grid-column: quantity-s/quantity-e;
+    width: 100%;
   }
   &__unit {
     grid-column: unit-s/unit-e;
+    width: 100%;
   }
   &__ingredient {
     grid-column: ingredient-s/ingredient-e;
+    width: 100%;
   }
 
   label {
@@ -283,6 +290,7 @@
     border-bottom: 2px solid lightgray;
     text-align: center;
     outline: none;
+    width: 100%;
   }
 
   input:focus {
@@ -299,12 +307,14 @@
 
   .ingredient {
     text-align: left;
+    width: 100%;
   }
 }
 
 .ingredient-list__ingredient {
   display: flex;
   align-items: center;
+  width: 100%;
 
   font-size: 1.5rem;
 
@@ -324,6 +334,7 @@
 
 .add-ingredient__error-message {
   // width: 80vw;
+  width: 100%;
   height: 20px;
 }
 
@@ -376,6 +387,7 @@
     border-bottom: 2px solid lightgray;
     text-align: left;
     outline: none;
+    width: 100%;
 
     ::placeholder {
       font-size: 1.25rem;
@@ -388,6 +400,7 @@
 }
 
 .direction-list {
+  width: 100%;
   align-items: center;
 
   font-size: 1.5rem;
@@ -442,6 +455,7 @@
   justify-self: center;
   color: red;
   font-style: italic;
+  width: 100%;
 }
 
 .recipe-info-grid {
@@ -450,6 +464,7 @@
   grid-template-columns: [servings-s] 1fr [servings-e activetime-s] 1fr [activetime-e totaltime-s] 1fr [totaltime-e];
   grid-template-rows: [title-t] max-content [title-b info-t] max-content [info-b description-t] 200px [description-b];
   gap: 20px;
+  width: 100%;
 
   .input-and-label {
     display: grid;
@@ -469,6 +484,7 @@
       border-bottom: 2px solid lightgray;
       text-align: center;
       outline: none;
+      width: 100%;
     }
 
     input:focus {

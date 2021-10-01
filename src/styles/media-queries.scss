@@ -100,6 +100,40 @@
   }
 
   .add-recipe-scroll {
-    width: 80vh;
+    width: 80vw;
   }
+  
+  .add-ingredient-inputs {
+    
+    grid-template-columns: [quantity-s] 60px [quantity-e unit-s] 60px [unit-e ingredient-s] 3fr [ingredient-e];
+    grid-template-rows: [s] auto [m] auto [e];
+   
+  }
+
+  .add-ingredient-button {
+    
+   
+    grid-column: quantity-s/ingredient-e;
+    grid-row: m/e;
+    
+    transform: translateY(0px);
+  }
+}
+
+.add-ingredient-input {
+  
+
+  &__quantity {
+    grid-column: quantity-s/quantity-e;
+    grid-row: s/m;
+  }
+  &__unit {
+    grid-column: unit-s/unit-e;
+    grid-row: s/m;
+  }
+  &__ingredient {
+    grid-column: ingredient-s/ingredient-e;
+    grid-row: s/m;
+  }
+}
 }
