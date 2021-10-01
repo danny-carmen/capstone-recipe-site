@@ -57,3 +57,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+input {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
