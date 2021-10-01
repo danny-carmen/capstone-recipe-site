@@ -1,4 +1,4 @@
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 700px) {
   .nav-bar {
     height: 48px;
     font-size: 1.5rem;
@@ -92,5 +92,14 @@
 
   .add-recipe-modal-grid {
     grid-template-columns: 10px [start] auto [end] 10px;
+  }
+
+  .my-recipes-title {
+    font-size: 1.5rem;
+    margin-top: 80px;
+  }
+
+  .add-recipe-scroll {
+    width: 80vh;
   }
 }
