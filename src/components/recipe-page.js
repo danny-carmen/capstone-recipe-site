@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import RecipeDirections from "./recipe-directions";
-import RecipeInfo from "./recipe-info";
-import RecipeIngredients from "./recipe-ingredients";
+import RecipeDirections from "./recipes/recipe-directions";
+import RecipeInfo from "./recipes/recipe-info";
+import RecipeIngredients from "./recipes/recipe-ingredients";
 import axios from "axios";
 
-import RecipeImage from "./recipe-image";
+import RecipeImage from "./recipes/recipe-image";
 
 export default class RecipePage extends Component {
   constructor(props) {

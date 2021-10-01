@@ -1,12 +1,12 @@
-import HomePage from "./components/home-page";
+import HomePage from "./pages/home-page";
 import NavBar from "./components/nav-bar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccountMenu from "./components/account-menu";
 import RecipePage from "./components/recipe-page";
-import Profile from "./components/profile";
+import Profile from "./pages/profile";
 import React, { Component } from "react";
 import axios from "axios";
-import NoMatch from "./components/nomatch";
+import NoMatch from "./pages/nomatch";
 
 export default class App extends Component {
   constructor(props) {

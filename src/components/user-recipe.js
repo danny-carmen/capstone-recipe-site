@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import RecipeImage from "./recipe-image";
-import RecipeTitle from "./title";
+import RecipeImage from "./recipes/recipe-image";
+import RecipeTitle from "./recipes/title";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit, faEye } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

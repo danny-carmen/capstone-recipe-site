@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AddRecipeModal from "./add-recipe/add-recipe-modal";
-import LoginModal from "./login-modal";
-import RegisterModal from "./register-modal";
+import LoginModal from "./modals/login-modal";
+import RegisterModal from "./modals/register-modal";
 import axios from "axios";
 import { withRouter } from "react-router";
 
@@ -22,7 +22,7 @@ class AccountMenu extends Component {
     this.handleRegisterModalClose = this.handleRegisterModalClose.bind(this);
     this.handleAddRecipeClick = this.handleAddRecipeClick.bind(this);
     this.handleAddRecipeModalClose = this.handleAddRecipeModalClose.bind(this);
-    // this.checkLoginStatus = this.checkLoginStatus.bind(this);
+
     this.logOutUser = this.logOutUser.bind(this);
     this.logInUser = this.logInUser.bind(this);
     this.closeAccountMenu = this.closeAccountMenu.bind(this);
@@ -54,11 +54,6 @@ class AccountMenu extends Component {
     this.setState({ addRecipeModalIsOpen: true });
     this.closeAccountMenu(true);
   }
-
-  // checkLoginStatus() {
-
-  //   this.props.checkLoginStatus();
-  // }
 
   logOutUser() {
     axios

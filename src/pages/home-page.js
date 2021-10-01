@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import RecipeBoard from "./recipe-board";
-import SearchBar from "./search-bar";
+import RecipeBoard from "../components/recipe-board";
+import SearchBar from "../components/search-bar";
 
 export default class HomePage extends Component {
   constructor() {

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Author from "./author";
-import RecipeTime from "./recipe-time";
-import Servings from "./servings";
-import RecipeTitle from "./title";
+import Author from "./recipes/author";
+import RecipeTime from "./recipes/recipe-time";
+import Servings from "./recipes/servings";
+import RecipeTitle from "./recipes/title";
 
 import { Link } from "react-router-dom";
 

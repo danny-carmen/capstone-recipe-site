@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import MyRecipes from "./my-recipes";
+import MyRecipes from "../components/my-recipes";
 import axios from "axios";
 
 export default class Profile extends Component {
