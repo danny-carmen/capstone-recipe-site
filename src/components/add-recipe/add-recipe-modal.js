@@ -159,12 +159,9 @@ export default class AddRecipeModal extends Component {
   }
 
   submitNewRecipe(recipeObject) {
-    console.log("got to 160");
-    console.log(recipeObject);
     axios
       .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
-        console.log("got to 164");
         let documentId = res1.data.id;
         handleUpload(this.state.recipeImage, documentId, res1.data.config);
 
@@ -200,7 +197,6 @@ export default class AddRecipeModal extends Component {
   }
 
   submitEditedRecipe(recipeObject) {
-    //need to check if image changed
     axios
       .get("https://ddc-tastable.herokuapp.com/recipes/info")
       .then((res) => {
