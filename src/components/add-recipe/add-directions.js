@@ -110,9 +110,6 @@ export default class AddDirections extends Component {
         <div className="direction-list">{directions}</div>
         <div>
           <div className="add-direction-input">
-            <label onClick={this.handleAddDirection} for="newDirection">
-              ADD STEP
-            </label>
             <input
               id="add-direction-input"
               name="newDirection"
@@ -121,7 +118,10 @@ export default class AddDirections extends Component {
               placeholder="Add step here..."
               value={this.state.newDirection}
               onChange={this.handleChange}
-            />{" "}
+            />
+            <label onClick={this.handleAddDirection} for="newDirection">
+              ADD STEP
+            </label>
           </div>
         </div>
       </div>
