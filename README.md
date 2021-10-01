@@ -1,6 +1,6 @@
 # DANNY CARMEN - FINAL CAPSTONE PROJECT
 
-[TASTABLE] (https://ddc-tastable.herokuapp.com)
+[TASTABLE](https://ddc-tastable.herokuapp.com/)
 
 My capstone project is a recipe site called Tastable, with a layout and flow inspired by Pinterest. A guest can view the recipes that have been uploaded by other users, or choose to register themselves as a user. Users can upload recipes to the site. Users can view just the recipes that they have uploaded, and can choose to edit or delete a recipe if desired.
 
