@@ -73,6 +73,17 @@ router.route("/user/:username").get((req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.route("/info").get((req, res) => {
+  return res.json({
+    config: {
+      bucketName: process.env.S3B,
+      region: process.env.R,
+      accessKeyId: process.env.AK,
+      secretAccessKey: process.env.SAK,
+    },
+  });
+});
+
 router.route("/:id").get((req, res) => {
   Recipe.findById(req.params.id)
     .then((recipe) => res.json(recipe))
@@ -113,7 +124,15 @@ router.route("/add").post((req, res) => {
   newRecipe
     .save()
     .then(() => {
-      res.json(newRecipe._id);
+      res.json({
+        id: newRecipe._id,
+        config: {
+          bucketName: process.env.S3B,
+          region: process.env.R,
+          accessKeyId: process.env.AK,
+          secretAccessKey: process.env.SAK,
+        },
+      });
     })
     .catch((err) => {
       res.status(400).json("Error: " + err);

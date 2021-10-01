@@ -16,16 +16,8 @@ import S3 from "aws-s3";
 import filepickerCss from "../../../node_modules/react-dropzone-component/styles/filepicker.css";
 import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
-const config = {
-  bucketName: process.env.S3B,
-  region: process.env.R,
-  accessKeyId: process.env.AK,
-  secretAccessKey: process.env.SAK,
-};
-
-const S3Client = new S3(config);
-
-const handleUpload = async (file, newFileName) => {
+const handleUpload = async (file, newFileName, config) => {
+  let S3Client = new S3(config);
   S3Client.uploadFile(file, newFileName)
     .then((data) => {
       console.log(data);
@@ -174,8 +166,8 @@ export default class AddRecipeModal extends Component {
     axios
       .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
-        let documentId = res1.data;
-        handleUpload(this.state.recipeImage, documentId);
+        let documentId = res1.data.id;
+        handleUpload(this.state.recipeImage, documentId, res1.config);
 
         axios
           .post(
@@ -209,23 +201,29 @@ export default class AddRecipeModal extends Component {
 
   submitEditedRecipe(recipeObject) {
     //need to check if image changed
-
-    if (this.props.recipe.recipeImage !== this.state.recipeImage) {
-      S3Client.deleteFile(this.props.recipe._id + ".jpeg")
-        .then((data) => {
-          console.log(data);
-          S3Client.uploadFile(this.state.recipeImage, this.props.recipe._id)
+    axios
+      .get("https://ddc-tastable.herokuapp.com/recipes/info")
+      .then((res) => {
+        let S3Client = new S3(res.data.config);
+        if (this.props.recipe.recipeImage !== this.state.recipeImage) {
+          S3Client.deleteFile(this.props.recipe._id + ".jpeg")
             .then((data) => {
               console.log(data);
-              this.updateDatabase(recipeObject);
+              S3Client.uploadFile(this.state.recipeImage, this.props.recipe._id)
+                .then((data) => {
+                  console.log(data);
+                  this.updateDatabase(recipeObject);
+                })
+                .catch((err) => console.error(err));
             })
             .catch((err) => console.error(err));
-        })
-        .catch((err) => console.error(err));
-    } else {
-      this.updateDatabase(recipeObject);
-    }
+        } else {
+          this.updateDatabase(recipeObject);
+        }
+      })
+      .catch((err) => console.log(err));
   }
+
   updateDatabase(recipeObject) {
     axios
       .post(

@@ -35,7 +35,6 @@ export default class Profile extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.getUserRecipes();
   }
 
