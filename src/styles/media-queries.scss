@@ -54,6 +54,7 @@
 
     grid-template-columns: [s] 1fr [e];
     grid-template-rows: [image-t] max-content [image-b info-t] max-content [info-b ingredients-t] max-content [ingredients-b directions-t] max-content [directions-b] 10px;
+    row-gap: 15px;
   }
 
   .recipe-info {
@@ -135,5 +136,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 20px;
   }
 }
