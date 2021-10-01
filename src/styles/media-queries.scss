@@ -41,6 +41,11 @@
     &__title {
       font-size: 1.25rem;
     }
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
   }
 
   .recipe-page {
@@ -75,5 +80,17 @@
 
   .add-recipe-modal {
     width: 80vw;
+  }
+
+  .account-menu {
+    top: 48px;
+  }
+
+  .spacer-search-bar {
+    height: 140px;
+  }
+
+  .add-recipe-modal-grid {
+    grid-template-columns: 10px [start] auto [end] 10px;
   }
 }
