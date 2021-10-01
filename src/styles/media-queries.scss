@@ -1,0 +1,79 @@
+@media screen and (max-width: 560px) {
+  .nav-bar {
+    height: 48px;
+    font-size: 1.5rem;
+  }
+
+  .search-bar-wrapper {
+    margin-top: 48px;
+
+    .search-bar-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    .search-bar {
+      height: 45px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    input {
+      height: 24px;
+      font-size: 1rem;
+    }
+
+    input::placeholder {
+      font-size: 1rem;
+    }
+  }
+
+  .recipe-board {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
+
+  .recipe-card {
+    height: 400px;
+    width: 300px;
+    grid-template-rows: [img-t] 300px [img-b title-t] 3fr [title-b info1-t] 2fr [info1-b info2-t] 2fr [info2-b];
+
+    &__title {
+      font-size: 1.25rem;
+    }
+  }
+
+  .recipe-page {
+    width: 95vw;
+    padding-top: 48px;
+
+    grid-template-columns: [s] 1fr [e];
+    grid-template-rows: [image-t] max-content [image-b info-t] max-content [info-b ingredients-t] max-content [ingredients-b directions-t] max-content [directions-b] 10px;
+  }
+
+  .recipe-info {
+    grid-column: s/e;
+    grid-row: info-t/info-b;
+  }
+
+  .recipe-ingredients {
+    grid-column: s/e;
+    grid-row: ingredients-t/ingredients-b;
+    overflow-y: inherit;
+  }
+
+  .recipe-directions {
+    grid-column: s/e;
+    grid-row: directions-t/directions-b;
+    overflow-y: inherit;
+  }
+
+  .recipe-images {
+    grid-column: s/e;
+    grid-row: image-t/image-b;
+  }
+
+  .add-recipe-modal {
+    width: 80vw;
+  }
+}

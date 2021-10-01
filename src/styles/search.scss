@@ -9,7 +9,7 @@
   margin-top: 68px;
   background-color: white;
   grid-template-columns:
-    [spacer-s] 1fr [spacer-e searchbar-s] minmax(180px, 2fr)
+    [spacer-s] 1fr [spacer-e searchbar-s] minmax(220px, 2fr)
     [searchbar-e icons-s] 1fr [icons-e];
   grid-template-rows: [searchbar-t] auto [searchbar-b];
 
