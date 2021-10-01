@@ -1,8 +1,8 @@
 # DANNY CARMEN - FINAL CAPSTONE PROJECT
 
-[RECIPE SITE - TASTABLE] (https://ddc-tastable.herokuapp.com)
+[TASTABLE] (https://ddc-tastable.herokuapp.com)
 
-My capstone project is a recipe site, with a layout and flow inspired by Pinterest. A guest can view the recipes that have been uploaded by other users, or choose to register themselves as a user. Users can upload recipes to the site. Users can view just the recipes that they have uploaded, and can choose to edit or delete a recipe if desired.
+My capstone project is a recipe site called Tastable, with a layout and flow inspired by Pinterest. A guest can view the recipes that have been uploaded by other users, or choose to register themselves as a user. Users can upload recipes to the site. Users can view just the recipes that they have uploaded, and can choose to edit or delete a recipe if desired.
 
 The front end was developed in React, and styling done in SCSS. The backend was developed using Node.js and Express, with a MongoDB Atlas database. All of the data in the database (recipes, users, and sessions) is stored in JSON format, with the exception of the images, which are uploaded directly from the site to an Amazon S3 account. The frontend reaches the backend through API requests made with Axios.
 
