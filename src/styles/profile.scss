@@ -5,11 +5,16 @@
   flex-direction: column;
   justify-content: center;
   column-gap: 0px;
-  margin-top: 250px;
 }
 
 .my-recipes-title {
   font-size: 3rem;
+  margin-top: 100px;
+}
+
+.my-recipes {
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .selection-options {

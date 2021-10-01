@@ -55,8 +55,8 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="profile-wrapper">
-        <div className="selection-options">MY RECIPES</div>
-        <div className="flip-window">
+        <div className="my-recipes-title">MY RECIPES</div>
+        <div className="my-recipes">
           <MyRecipes
             recipes={this.state.userRecipes}
             reloadRecipes={this.getUserRecipes}
