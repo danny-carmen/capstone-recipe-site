@@ -239,7 +239,7 @@ export default class AddRecipeModal extends Component {
 
     const recipeObject = {
       recipeVersion: "0.3.0",
-      recipeImage: this.state.recipeImage,
+      recipeImage: "",
       recipeTitle: this.state.recipeTitle,
       recipeAuthor: this.state.recipeAuthor,
       recipeDescription: this.state.recipeDescription,
