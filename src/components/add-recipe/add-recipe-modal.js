@@ -167,7 +167,7 @@ export default class AddRecipeModal extends Component {
       .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
         let documentId = res1.data.id;
-        handleUpload(this.state.recipeImage, documentId, res1.config);
+        handleUpload(this.state.recipeImage, documentId, res1.data.config);
 
         axios
           .post(
