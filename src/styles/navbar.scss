@@ -8,7 +8,7 @@
   height: 68px;
 
   color: $light-text;
-  font-size: 36px;
+  font-size: 2.25rem;
 
   * {
     color: $light-text;
@@ -54,7 +54,7 @@
   &__unselected {
     background-color: $primary-color;
     * {
-      font-size: 30px;
+      font-size: 1.9rem;
       color: $light-text;
     }
   }
@@ -63,7 +63,7 @@
     background-color: $light-text;
     * {
       color: $primary-color;
-      font-size: 30px;
+      font-size: 1.9rem;
     }
   }
 }
@@ -89,7 +89,7 @@
 
   .account-button {
     font-family: "Urbanist", sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     display: flex;
     justify-content: center;

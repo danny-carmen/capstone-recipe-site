@@ -10,6 +10,7 @@ export default class Profile extends Component {
     this.state = {
       openWindow: "my-recipes",
       userRecipes: [],
+      isLoading: true,
     };
 
     this.handleMyAccountButtonClick =
@@ -46,9 +47,12 @@ export default class Profile extends Component {
         axios
           .get("https://ddc-tastable.herokuapp.com/recipes/user/" + res.data)
           .then((res) => {
-            this.setState({ userRecipes: res.data });
+            this.setState({ userRecipes: res.data, isLoading: false });
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            this.setState({ isLoading: false });
+          });
       })
       .catch((err) => console.log(err));
   }
@@ -60,6 +64,7 @@ export default class Profile extends Component {
           <MyRecipes
             recipes={this.state.userRecipes}
             reloadRecipes={this.getUserRecipes}
+            isLoading={this.state.isLoading}
           />
         </div>
       </div>

@@ -45,14 +45,14 @@
 
     label {
       grid: label-t/label-b;
-      font-size: 14px;
+      font-size: 0.9rem;
       justify-self: center;
     }
 
     input {
       grid-row: input-t/input-b;
       height: 24px;
-      font-size: 20px;
+      font-size: 1.25rem;
       border: none;
       border-bottom: 2px solid lightgray;
       text-align: center;
@@ -73,7 +73,7 @@
     border: none;
     margin-right: 10px;
     margin-left: 10px;
-    font-size: 24px;
+    font-size: 1.5rem;
     background-color: $primary-color;
     color: $light-text;
   }
@@ -126,14 +126,14 @@
 
     label {
       grid: label-t/label-b;
-      font-size: 14px;
+      font-size: 0.9rem;
       justify-self: center;
     }
 
     input {
       grid-row: input-t/input-b;
       height: 24px;
-      font-size: 20px;
+      font-size: 1.25rem;
       border: none;
       border-bottom: 2px solid lightgray;
       text-align: center;
@@ -160,7 +160,7 @@
       height: 40px;
       border: none;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 1.5rem;
       background-color: $primary-color;
       color: $light-text;
     }
@@ -242,7 +242,7 @@
     justify-self: center;
     width: max-content;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 1.25rem;
     background-color: $primary-color;
     grid-column: button-s/button-e;
     color: $light-text;
@@ -270,14 +270,14 @@
 
   label {
     grid: label-t/label-b;
-    font-size: 14px;
+    font-size: 0.9rem;
     justify-self: center;
   }
 
   input {
     grid-row: input-t/input-b;
     height: 24px;
-    font-size: 20px;
+    font-size: 1.25rem;
     border: none;
     border-bottom: 2px solid lightgray;
     text-align: center;
@@ -305,7 +305,7 @@
   display: flex;
   align-items: center;
 
-  font-size: 24px;
+  font-size: 1.5rem;
 
   .up-down-buttons {
     display: flex;
@@ -335,7 +335,7 @@
   padding-bottom: 5px;
   outline: none;
 
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .add-direction-input {
@@ -354,7 +354,7 @@
     align-self: center;
     width: max-content;
 
-    font-size: 20px;
+    font-size: 1.25rem;
     background-color: $primary-color;
 
     color: $light-text;
@@ -370,14 +370,14 @@
     grid-column: input-t/input-b;
     grid-row: top/bottom;
     height: 24px;
-    font-size: 20px;
+    font-size: 1.25rem;
     border: none;
     border-bottom: 2px solid lightgray;
     text-align: left;
     outline: none;
 
     ::placeholder {
-      font-size: 20px;
+      font-size: 1.25rem;
     }
   }
 
@@ -389,7 +389,7 @@
 .direction-list {
   align-items: center;
 
-  font-size: 24px;
+  font-size: 1.5rem;
 
   &__direction {
     display: flex;
@@ -420,7 +420,7 @@
   grid-row: submit-t/submit-b;
   grid-column: start/end;
   width: max-content;
-  font-size: 20px;
+  font-size: 1.5rem;
   background-color: $primary-color;
   align-self: center;
   color: $light-text;
@@ -456,14 +456,14 @@
 
     label {
       grid: label-t/label-b;
-      font-size: 14px;
+      font-size: 0.9rem;
       justify-self: center;
     }
 
     input {
       grid-row: input-t/input-b;
       height: 24px;
-      font-size: 20px;
+      font-size: 1.25rem;
       border: none;
       border-bottom: 2px solid lightgray;
       text-align: center;
@@ -477,7 +477,7 @@
     textarea {
       grid-row: input-t/input-b;
 
-      font-size: 20px;
+      font-size: 1.25rem;
       font-family: "Urbanist", sans-serif;
       border: 2px solid lightgray;
       border-radius: 8px;
@@ -564,7 +564,7 @@
     outline: none;
     color: grey;
     border: none;
-    font-size: 24px;
+    font-size: 1.5rem;
     justify-self: flex-end;
     align-self: flex-start;
   }

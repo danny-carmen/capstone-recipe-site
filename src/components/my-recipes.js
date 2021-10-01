@@ -28,7 +28,7 @@ export default class MyRecipes extends Component {
     });
     return (
       <div className="user-recipes-wrapper">
-        {this.props.recipes.length > 0 ? (
+        {this.props.recipes.length > 0 && !this.props.isLoading ? (
           <div className="user-recipes">{userRecipeItems}</div>
         ) : (
           <div className="none-found-wrapper">
