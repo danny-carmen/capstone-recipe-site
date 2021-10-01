@@ -87,12 +87,14 @@ export default class AddRecipeModal extends Component {
   handleAddIngredientList(ingredientList) {
     this.setState({
       ingredients: ingredientList,
+      errorMessage: "",
     });
   }
 
   handleAddDirectionsList(directionList) {
     this.setState({
       directions: directionList,
+      errorMessage: "",
     });
   }
 
@@ -158,6 +160,7 @@ export default class AddRecipeModal extends Component {
 
   submitNewRecipe(recipeObject) {
     console.log("got to 160");
+    console.log(recipeObject);
     axios
       .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
