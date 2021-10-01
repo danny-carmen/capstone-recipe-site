@@ -14,9 +14,7 @@ import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.cs
 const handleUpload = async (file, newFileName, config) => {
   let S3Client = new S3(config);
   S3Client.uploadFile(file, newFileName)
-    .then((data) => {
-      console.log(data);
-    })
+    .then((data) => {})
     .catch((err) => console.error(err));
 };
 
@@ -203,10 +201,8 @@ export default class AddRecipeModal extends Component {
         if (this.props.recipe.recipeImage !== this.state.recipeImage) {
           S3Client.deleteFile(this.props.recipe._id + ".jpeg")
             .then((data) => {
-              console.log(data);
               S3Client.uploadFile(this.state.recipeImage, this.props.recipe._id)
                 .then((data) => {
-                  console.log(data);
                   this.updateDatabase(recipeObject);
                 })
                 .catch((err) => console.error(err));
@@ -227,7 +223,6 @@ export default class AddRecipeModal extends Component {
         recipeObject
       )
       .then((res) => {
-        console.log(res);
         this.reloadRecipesAndCloseModal();
       })
       .catch((err) => console.log(err));

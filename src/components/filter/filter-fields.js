@@ -36,8 +36,6 @@ export default class FilterFields extends Component {
     if (this.state[fieldName] === "FALSE") {
       this.setState({ [fieldName]: "TRUE" });
     } else this.setState({ [fieldName]: "FALSE" });
-
-    console.log(this.state);
   }
 
   setFiltersActive() {

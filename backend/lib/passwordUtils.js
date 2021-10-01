@@ -9,7 +9,6 @@ function validPassword(password, hash, salt) {
 }
 
 function genPassword(password) {
-  console.log("entered genpassword");
   var salt = crypto.randomBytes(32).toString("hex");
   var genHash = crypto
     .pbkdf2Sync(password, salt, 10000, 64, "sha512")

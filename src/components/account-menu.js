@@ -66,7 +66,6 @@ class AccountMenu extends Component {
         withCredentials: true,
       })
       .then((res) => {
-        console.log(res);
         this.props.history.push("/");
         this.props.checkLoginStatus();
       })

@@ -29,7 +29,6 @@ export default class UserRecipe extends Component {
   }
 
   handleEditRecipeModalClick() {
-    console.log("I clicked it");
     this.setState({ editRecipeModalIsOpen: true });
   }
 

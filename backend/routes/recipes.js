@@ -3,7 +3,6 @@ const { countDocuments } = require("../models/recipe.model");
 let Recipe = require("../models/recipe.model");
 
 router.route("/").get((req, res) => {
-  console.log("Getting Recipes Now");
   Recipe.countDocuments({}, function (err, count) {
     Recipe.find()
       .sort({ updatedAt: -1 })
@@ -21,8 +20,6 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
-  console.log("starting search process");
-  console.log(req.params.criteria);
   Recipe.countDocuments(
     {
       $or: [
@@ -37,8 +34,6 @@ router.route("/search=:criteria").get((req, res) => {
       ],
     },
     function (err, count) {
-      console.log("Count: ", count);
-      console.log(req.query);
       Recipe.find({
         $or: [
           { recipeTitle: { $regex: req.params.criteria, $options: "i" } },

@@ -59,7 +59,6 @@ app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);
 
 app.get("*", (req, res) => {
-  console.log(path.join("Got to the start!"));
   res.sendFile(path.join(__dirname + "/../build/index.html"));
 });
 

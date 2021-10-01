@@ -3,7 +3,13 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   column-gap: 0px;
+  margin-top: 250px;
+}
+
+.my-recipes-title {
+  font-size: 3rem;
 }
 
 .selection-options {

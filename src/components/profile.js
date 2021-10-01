@@ -46,7 +46,6 @@ export default class Profile extends Component {
         axios
           .get("https://ddc-tastable.herokuapp.com/recipes/user/" + res.data)
           .then((res) => {
-            console.log(res);
             this.setState({ userRecipes: res.data });
           })
           .catch((err) => console.log(err));
