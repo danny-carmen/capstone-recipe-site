@@ -8,6 +8,8 @@ import axios from "axios";
 
 import AddRecipeModal from "./add-recipe/add-recipe-modal";
 
+//remove the modal from here and put on the main my recipes page, with a props function from here
+
 export default class UserRecipe extends Component {
   constructor() {
     super();

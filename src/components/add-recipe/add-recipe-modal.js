@@ -12,6 +12,7 @@ import filepickerCss from "../../../node_modules/react-dropzone-component/styles
 import dropzoneCss from "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 const handleUpload = async (file, newFileName, config) => {
+  console.log("uplaoding image");
   let S3Client = new S3(config);
   S3Client.uploadFile(file, newFileName)
     .then((data) => {})
@@ -156,9 +157,11 @@ export default class AddRecipeModal extends Component {
   }
 
   submitNewRecipe(recipeObject) {
+    console.log("got to 160");
     axios
       .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
       .then((res1) => {
+        console.log("got to 164");
         let documentId = res1.data.id;
         handleUpload(this.state.recipeImage, documentId, res1.data.config);
 
@@ -173,6 +176,7 @@ export default class AddRecipeModal extends Component {
             }
           )
           .then(() => {
+            console.log("got to 179");
             this.setState({
               recipeTitle: "",
               recipeDescription: "",
