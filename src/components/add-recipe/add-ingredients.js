@@ -5,7 +5,6 @@ import {
   faTimes,
   faCaretUp,
   faCaretDown,
-  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default class AddIngredients extends Component {

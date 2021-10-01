@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faCaretUp,
-  faCaretDown,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import AddIngredients from "./add-ingredients";
 import AddDirections from "./add-directions";
 import { DropzoneComponent } from "react-dropzone-component";
@@ -301,10 +296,15 @@ export default class AddRecipeModal extends Component {
               {this.props.mode === "editRecipe" &&
               typeof this.state.recipeImage === "string" ? (
                 <div className="current-image-wrapper">
-                  <img src={this.state.recipeImage} />
+                  <img
+                    src={this.state.recipeImage}
+                    alt={this.state.recipeTitle}
+                  />
 
                   <div className="image-removal-link">
-                    <a onClick={() => this.removeImage()}>Remove file</a>
+                    <a href="#" onClick={() => this.removeImage()}>
+                      Remove file
+                    </a>
                   </div>
                 </div>
               ) : (

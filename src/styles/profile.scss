@@ -1,16 +1,12 @@
 .profile-wrapper {
   width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 200px [content-t] 1fr [content-b] 100px;
-  grid-template-columns: 200px [selection-s] 1fr [selection-e window-s] 3fr [window-e] 200px;
+  display: flex;
+  flex-direction: column;
   column-gap: 0px;
 }
 
 .selection-options {
-  grid-column: selection-s/selection-e;
-  grid-row: content-t/content-b;
-
   border-right: 2px solid lightgray;
 
   display: flex;
@@ -27,16 +23,6 @@
     text-align: right;
     width: max-content;
   }
-
-  .selected {
-    border-right: 6px solid lightgray;
-  }
-}
-
-.flip-window {
-  grid-column: window-s/window-e;
-  grid-row: content-t/content-b;
-  height: 70vh;
 }
 
 .account-info-wrapper {

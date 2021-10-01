@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import lasagna from "../images/lasagna.jpg";
-import AccountInfo from "./account-info";
+
 import MyRecipes from "./my-recipes";
 import axios from "axios";
 
@@ -57,13 +56,7 @@ export default class Profile extends Component {
   render() {
     return (
       <div className="profile-wrapper">
-        <div className="selection-options">
-          <button
-            className={this.state.openWindow === "my-recipes" ? "selected" : ""}
-          >
-            MY RECIPES
-          </button>
-        </div>
+        <div className="selection-options">MY RECIPES</div>
         <div className="flip-window">
           <MyRecipes
             recipes={this.state.userRecipes}

@@ -102,9 +102,9 @@ class AccountMenu extends Component {
             <Link
               onClick={() => this.closeAccountMenu()}
               className="account-button"
-              to="/profile"
+              to="/my-recipes"
             >
-              Profile
+              My Recipes
             </Link>
             <button
               className="account-button"

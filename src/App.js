@@ -65,7 +65,7 @@ export default class App extends Component {
             />
 
             {this.state.loggedInStatus === "LOGGED_IN" ? (
-              <Route path="/profile" component={Profile} />
+              <Route path="/my-recipes" component={Profile} />
             ) : null}
 
             <Route component={NoMatch} />

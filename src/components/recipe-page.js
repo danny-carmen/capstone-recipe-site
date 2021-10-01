@@ -4,7 +4,6 @@ import RecipeInfo from "./recipe-info";
 import RecipeIngredients from "./recipe-ingredients";
 import axios from "axios";
 
-import lasagna from "../images/lasagna.jpg";
 import RecipeImage from "./recipe-image";
 
 export default class RecipePage extends Component {
