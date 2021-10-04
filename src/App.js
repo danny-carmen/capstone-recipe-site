@@ -2,7 +2,7 @@ import HomePage from "./pages/home-page";
 import NavBar from "./components/nav-bar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccountMenu from "./components/account-menu";
-import RecipePage from "./components/recipe-page";
+import RecipePage from "./pages/recipe-page";
 import Profile from "./pages/profile";
 import React, { Component } from "react";
 import axios from "axios";
