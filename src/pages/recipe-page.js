@@ -19,7 +19,7 @@ export default class RecipePage extends Component {
   componentWillMount() {
     axios
       .get(
-        "https://ddc-tastable.herokuapp.com/recipes/retrieve" +
+        "https://ddc-tastable.herokuapp.com/recipes/retrieve/" +
           this.props.match.params.id
       )
       .then((res) => {
