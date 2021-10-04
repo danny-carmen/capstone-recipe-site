@@ -79,7 +79,7 @@ router.route("/info").get((req, res) => {
   });
 });
 
-router.route("/:id").get((req, res) => {
+router.route("/retrieve/:id").get((req, res) => {
   Recipe.findById(req.params.id)
     .then((recipe) => res.json(recipe))
     .catch((err) => res.status(400).json("Error: " + err));

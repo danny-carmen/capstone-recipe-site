@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import RecipeDirections from "./recipes/recipe-directions";
-import RecipeInfo from "./recipes/recipe-info";
-import RecipeIngredients from "./recipes/recipe-ingredients";
+import RecipeDirections from "../components/recipes/recipe-directions";
+import RecipeInfo from "../components/recipes/recipe-info";
+import RecipeIngredients from "../components/recipes/recipe-ingredients";
 import axios from "axios";
 
-import RecipeImage from "./recipes/recipe-image";
+import RecipeImage from "../components/recipes/recipe-image";
 
 export default class RecipePage extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class RecipePage extends Component {
   componentWillMount() {
     axios
       .get(
-        "https://ddc-tastable.herokuapp.com/recipes/" +
+        "https://ddc-tastable.herokuapp.com/recipes/retrieve" +
           this.props.match.params.id
       )
       .then((res) => {
