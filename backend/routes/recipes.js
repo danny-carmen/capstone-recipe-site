@@ -3,7 +3,6 @@ const { countDocuments } = require("../models/recipe.model");
 let Recipe = require("../models/recipe.model");
 
 router.route("/").get((req, res) => {
-  console.log("From Recipes");
   Recipe.countDocuments({}, function (err, count) {
     Recipe.find()
       .sort({ updatedAt: -1 })
