@@ -13,9 +13,10 @@ export default class RecipeBoard extends Component {
   }
 
   listenScrollEvent(e) {
+    console.log(e.target);
     if (
-      e.target.scrollTop >=
-      e.target.scrollHeight - e.target.offsetHeight * 2
+      e.target &&
+      e.target.scrollTop >= e.target.scrollHeight - e.target.offsetHeight * 2
     ) {
       this.props.scrollToLoad();
     }
