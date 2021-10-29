@@ -13,10 +13,9 @@ export default class RecipeBoard extends Component {
   }
 
   listenScrollEvent(e) {
-    console.log(e.target);
     if (
-      e.target &&
-      e.target.scrollTop >= e.target.scrollHeight - e.target.offsetHeight * 2
+      e.target.scrollTop >=
+      e.target.scrollHeight - e.target.offsetHeight * 2
     ) {
       this.props.scrollToLoad();
     }
@@ -29,7 +28,11 @@ export default class RecipeBoard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentSearch !== this.props.currentSearch) {
+    console.log(this.scrollRef.current);
+    if (
+      prevProps.currentSearch !== this.props.currentSearch &&
+      this.scrollRef.current
+    ) {
       this.scrollRef.current.scrollTop = 0;
     }
     if (this.props.data.length > 0) {
