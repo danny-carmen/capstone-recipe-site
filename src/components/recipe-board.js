@@ -28,7 +28,6 @@ export default class RecipeBoard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.scrollRef.current);
     if (
       prevProps.currentSearch !== this.props.currentSearch &&
       this.scrollRef.current
