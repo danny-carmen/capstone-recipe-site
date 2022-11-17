@@ -25,7 +25,7 @@ export default class HomePage extends Component {
   componentWillMount() {
     this.setState({ isLoading: true });
     axios
-      .get("https://ddc-tastable.herokuapp.com/recipes/", {
+      .get("https://tastable-capstone.onrender.com/recipes/", {
         params: {
           setNumber: this.state.scrollPosition,
         },
@@ -52,11 +52,14 @@ export default class HomePage extends Component {
     });
 
     axios
-      .get("https://ddc-tastable.herokuapp.com/recipes/search=" + searchQuery, {
-        params: {
-          setNumber: 0,
-        },
-      })
+      .get(
+        "https://tastable-capstone.onrender.com/recipes/search=" + searchQuery,
+        {
+          params: {
+            setNumber: 0,
+          },
+        }
+      )
       .then((res) => {
         this.setState({
           boardItems: res.data.recipeArray,
@@ -81,7 +84,7 @@ export default class HomePage extends Component {
     });
 
     axios
-      .get("https://ddc-tastable.herokuapp.com/recipes/", {
+      .get("https://tastable-capstone.onrender.com/recipes/", {
         params: {
           setNumber: 0,
         },
@@ -106,7 +109,7 @@ export default class HomePage extends Component {
       this.setState({ isLoading: true });
       axios
         .get(
-          "https://ddc-tastable.herokuapp.com/recipes/search=" +
+          "https://tastable-capstone.onrender.com/recipes/search=" +
             this.state.currentSearch,
           {
             params: {
@@ -134,7 +137,7 @@ export default class HomePage extends Component {
     ) {
       this.setState({ isLoading: true });
       axios
-        .get("https://ddc-tastable.herokuapp.com/recipes/", {
+        .get("https://tastable-capstone.onrender.com/recipes/", {
           params: {
             setNumber: this.state.scrollPosition + 1,
           },

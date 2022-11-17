@@ -27,7 +27,7 @@ export default class App extends Component {
 
   checkLoginStatus() {
     axios
-      .get("https://ddc-tastable.herokuapp.com/auth/checkLoginStatus", {
+      .get("https://tastable-capstone.onrender.com/auth/checkLoginStatus", {
         withCredentials: true,
       })
       .then((res) => {

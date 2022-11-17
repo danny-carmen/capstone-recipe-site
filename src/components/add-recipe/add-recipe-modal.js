@@ -100,7 +100,7 @@ export default class AddRecipeModal extends Component {
 
   componentDidMount() {
     axios
-      .get("https://ddc-tastable.herokuapp.com/auth/getUserName", {
+      .get("https://tastable-capstone.onrender.com/auth/getUserName", {
         withCredentials: true,
       })
       .then((res) => {
@@ -160,14 +160,15 @@ export default class AddRecipeModal extends Component {
 
   submitNewRecipe(recipeObject) {
     axios
-      .post("https://ddc-tastable.herokuapp.com/recipes/add", recipeObject)
+      .post("https://tastable-capstone.onrender.com/recipes/add", recipeObject)
       .then((res1) => {
         let documentId = res1.data.id;
         handleUpload(this.state.recipeImage, documentId, res1.data.config);
 
         axios
           .post(
-            "https://ddc-tastable.herokuapp.com/recipes/update/" + documentId,
+            "https://tastable-capstone.onrender.com/recipes/update/" +
+              documentId,
             {
               recipeImage:
                 "https://tastable-recipe-images.s3.us-west-2.amazonaws.com/" +
@@ -198,7 +199,7 @@ export default class AddRecipeModal extends Component {
 
   submitEditedRecipe(recipeObject) {
     axios
-      .get("https://ddc-tastable.herokuapp.com/recipes/info")
+      .get("https://tastable-capstone.onrender.com/recipes/info")
       .then((res) => {
         let S3Client = new S3(res.data.config);
         if (this.props.recipe.recipeImage !== this.state.recipeImage) {
@@ -221,7 +222,7 @@ export default class AddRecipeModal extends Component {
   updateDatabase(recipeObject) {
     axios
       .post(
-        "https://ddc-tastable.herokuapp.com/recipes/update/" +
+        "https://tastable-capstone.onrender.com/recipes/update/" +
           this.props.recipe._id,
         recipeObject
       )

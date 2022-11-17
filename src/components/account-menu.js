@@ -57,7 +57,7 @@ class AccountMenu extends Component {
 
   logOutUser() {
     axios
-      .get("https://ddc-tastable.herokuapp.com/auth/logout", {
+      .get("https://tastable-capstone.onrender.com/auth/logout", {
         withCredentials: true,
       })
       .then((res) => {
