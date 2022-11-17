@@ -61,6 +61,7 @@ export default class HomePage extends Component {
         }
       )
       .then((res) => {
+        console.log("Received search request");
         this.setState({
           boardItems: res.data.recipeArray,
           totalItems: res.data.totalRecipeCount,
