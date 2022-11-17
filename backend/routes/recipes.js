@@ -20,6 +20,7 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
+  console.log("Searching Recipes: " + req.params.criteria);
   Recipe.countDocuments(
     {
       $or: [
