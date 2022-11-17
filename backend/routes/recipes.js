@@ -20,7 +20,6 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
-  console.log("Searching Recipes: " + req.params.criteria);
   Recipe.countDocuments(
     {
       $or: [
@@ -54,6 +53,7 @@ router.route("/search=:criteria").get((req, res) => {
         .limit(12)
         .skip(12 * req.query.setNumber)
         .then((recipes) => {
+          console.log("Searching Recipes: " + req.params.criteria);
           res.json({ recipeArray: recipes, totalRecipeCount: count });
         })
         .catch((err) => res.status(400).json("Error: " + err));
