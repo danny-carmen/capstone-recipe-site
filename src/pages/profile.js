@@ -40,12 +40,14 @@ export default class Profile extends Component {
 
   getUserRecipes() {
     axios
-      .get("https://ddc-tastable.herokuapp.com/auth/getUserName", {
+      .get("https://tastable-capstone.onrender.com/auth/getUserName", {
         withCredentials: true,
       })
       .then((res) => {
         axios
-          .get("https://ddc-tastable.herokuapp.com/recipes/user/" + res.data)
+          .get(
+            "https://tastable-capstone.onrender.com/recipes/user/" + res.data
+          )
           .then((res) => {
             this.setState({ userRecipes: res.data, isLoading: false });
           })

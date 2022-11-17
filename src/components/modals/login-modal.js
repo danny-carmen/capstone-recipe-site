@@ -21,7 +21,7 @@ export default class LoginModal extends Component {
   handleSubmit() {
     axios
       .post(
-        "https://ddc-tastable.herokuapp.com/auth/login",
+        "https://tastable-capstone.onrender.com/auth/login",
         {
           username: this.state.loginEmail,
           password: this.state.loginPassword,
