@@ -58,6 +58,18 @@ const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 
+app.use(function (req, res, next) {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://63765a57cacb112ecf76b300--startling-jelly-9b15a8.netlify.app"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use("/auth", authRouter);
 app.use("/recipes", recipesRouter);
 app.use("/users", usersRouter);

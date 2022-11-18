@@ -20,15 +20,6 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
-  console.log(req.get("origin"), req.get("host"));
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://63765a57cacb112ecf76b300--startling-jelly-9b15a8.netlify.app"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
   Recipe.countDocuments(
     {
       $or: [
