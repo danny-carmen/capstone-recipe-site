@@ -20,9 +20,14 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/search=:criteria").get((req, res) => {
+  console.log(req.get("origin"), req.get("host"));
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://tastable-capstone-front.onrender.com/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
   Recipe.countDocuments(
     {
