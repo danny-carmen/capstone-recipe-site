@@ -58,7 +58,8 @@ const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
+  console.log(req.get("origin"));
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://63765a57cacb112ecf76b300--startling-jelly-9b15a8.netlify.app"
