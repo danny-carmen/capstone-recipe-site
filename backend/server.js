@@ -61,6 +61,10 @@ const authRouter = require("./routes/auth");
 app.use((req, res, next) => {
   console.log(req.get("origin"));
   res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
