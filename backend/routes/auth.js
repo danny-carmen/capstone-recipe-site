@@ -57,6 +57,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.post("/register", jsonParser, (req, res, err) => {
+  console.log(res.getHeader("Access-Control-Allow-Origin"));
   if (req.body.password !== "") {
     User.findOne({ username: req.body.username })
       .then((foundUser) => {
