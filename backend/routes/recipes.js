@@ -23,7 +23,7 @@ router.route("/search=:criteria").get((req, res) => {
   console.log(req.get("origin"), req.get("host"));
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://tastable-capstone-front.onrender.com/"
+    "https://63765a57cacb112ecf76b300--startling-jelly-9b15a8.netlify.app"
   );
   res.header(
     "Access-Control-Allow-Headers",
