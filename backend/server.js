@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "/../build")));
 app.use(cors());
 
 // app.use(cors({ origin: "*", credentials: true }));
-cors.app.use(
+app.use(
   cors({
     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
