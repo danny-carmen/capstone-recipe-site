@@ -23,7 +23,6 @@ connection.once("open", () => {
 });
 
 app.use(express.static(path.join(__dirname, "/../build")));
-app.use(cors());
 
 // app.use(cors({ origin: "*", credentials: true }));
 app.use(
@@ -31,6 +30,7 @@ app.use(
     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
     preflightContinue: false,
+    optionsSuccessStatus: 200,
   })
 );
 app.use(express.json());
