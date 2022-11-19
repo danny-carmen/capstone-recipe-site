@@ -58,6 +58,7 @@ const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 
 app.use((req, res, next) => {
+  console.log("Method is" + req.method);
   res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
   res.setHeader(
     "Access-Control-Allow-Methods",
