@@ -64,7 +64,7 @@ app.options("/*", (req, res, next) => {
 
 // Access-Control-Expose-Headers: Access-Control-Allow-Origin
 
-app.use(cors(), (req, res, next) => {
+app.use("/*", cors(), (req, res, next) => {
   console.log("Method is" + req.method);
   res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
   res.setHeader(
