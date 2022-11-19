@@ -57,14 +57,14 @@ const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 
-app.options("/*", (req, res, next) => {
-  console.log("OPTIONS - Method is" + req.method);
-  next();
-});
+// app.options("/*", (req, res, next) => {
+//   console.log("OPTIONS - Method is" + req.method);
+//   next();
+// });
 
 // Access-Control-Expose-Headers: Access-Control-Allow-Origin
 
-app.use("/*", cors(), (req, res, next) => {
+app.use((req, res, next) => {
   console.log("Method is" + req.method);
   res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
   res.setHeader(
