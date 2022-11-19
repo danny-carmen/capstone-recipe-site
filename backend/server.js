@@ -30,7 +30,7 @@ app.use(
     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
     preflightContinue: false,
-    optionsSuccessStatus: 200,
+    optionsSuccessStatus: 204,
   })
 );
 app.use(express.json());
