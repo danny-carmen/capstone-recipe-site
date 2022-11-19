@@ -10,6 +10,8 @@ const bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 
 router.post("/login", function (req, res, next) {
+  console.log("From login " + res.getHeader("Access-Control-Allow-Origin"));
+
   passport.authenticate("local", function (err, user, info) {
     if (err) {
       throw err;

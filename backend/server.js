@@ -57,7 +57,7 @@ const recipesRouter = require("./routes/recipes");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 
-app.options((req, res, next) => {
+app.options("/*", (req, res, next) => {
   console.log("OPTIONS - Method is" + req.method);
   next();
 });
