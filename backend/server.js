@@ -69,8 +69,11 @@ app.use((req, res, next) => {
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
   if (req.method == "OPTIONS") {
+    console.log("OPTIONS");
+    console.log(res.getHeader("Access-Control-Allow-Origin"));
     res.status(200).end();
   } else {
+    console.log(res.getHeader("Access-Control-Allow-Origin"));
     next();
   }
 });
