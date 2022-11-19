@@ -27,10 +27,7 @@ app.use(express.static(path.join(__dirname, "/../build")));
 // app.use(cors({ origin: "*", credentials: true }));
 app.use(
   cors({
-    origin: [
-      "https://tastable-capstone-front.onrender.com/",
-      "http://localhost:3000",
-    ],
+    origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
   })
 );
@@ -60,7 +57,9 @@ const authRouter = require("./routes/auth");
 
 app.use((req, res, next) => {
   console.log(req.get("origin"));
-  res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
+  console.log(req.get("method"));
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
