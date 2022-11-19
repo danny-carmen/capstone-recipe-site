@@ -30,6 +30,7 @@ cors.app.use(
   cors({
     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
+    preflightContinue: false,
   })
 );
 app.use(express.json());
@@ -70,7 +71,11 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token, Authorization"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
-  next();
+  if (req.method == "OPTIONS") {
+    res.status(200).end();
+  } else {
+    next();
+  }
 });
 
 app.use("/auth", authRouter);
