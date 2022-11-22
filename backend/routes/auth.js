@@ -29,7 +29,6 @@ router.post("/login", function (req, res, next) {
       user.isAuthenticated = true;
       // console.log("Request Cookie " + req.headers.cookie);
       console.log("Response Headers " + res.getHeaders());
-      console.log("Response Headers " + res.headers["set-cookie"]);
 
       return res.json({ validCredentials: true, user: user });
     }
