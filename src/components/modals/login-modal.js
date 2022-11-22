@@ -31,6 +31,7 @@ export default class LoginModal extends Component {
       .then((res) => {
         if (res.data.validCredentials) {
           this.setState({ loginEmail: "", loginPassword: "" });
+          console.log("From handle submit ", res);
           this.props.logInUser();
           this.props.handleModalClose();
         } else {

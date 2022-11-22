@@ -68,6 +68,7 @@ class AccountMenu extends Component {
   }
 
   logInUser() {
+    console.log("Log in User");
     this.props.checkLoginStatus();
   }
 

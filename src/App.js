@@ -31,6 +31,7 @@ export default class App extends Component {
         withCredentials: true,
       })
       .then((res) => {
+        console.log("From check Login status", res);
         if (this.state.loggedInStatus !== res.data.isValidUser)
           this.setState({
             loggedInStatus: res.data.isValidUser,
