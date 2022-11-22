@@ -27,11 +27,8 @@ router.post("/login", function (req, res, next) {
         }
       });
       user.isAuthenticated = true;
-      // console.log("Request Cookie " + req.headers.cookie);
-      console.log("Response Headers ");
-      console.log(res.getHeaders());
-      res.cookie("auth", user.token, { sameSite: "none", secure: "true" });
-      return res.json({ validCredentials: true, user: user });
+
+      return res.json({ validCredentials: true });
     }
   })(req, res, next);
 });

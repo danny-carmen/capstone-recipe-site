@@ -59,7 +59,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { sameSite: "none", secure: true, maxAge: 1000 * 60 * 60 * 24 },
   })
 );
 
