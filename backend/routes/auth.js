@@ -35,7 +35,7 @@ router.post("/login", function (req, res, next) {
 
 router.get("/checkLoginStatus", jsonParser, (req, res, next) => {
   console.log("Check Login Status");
-  console.log(req);
+  console.log(req.user);
   if (req.user) {
     res.json({ isValidUser: "LOGGED_IN" });
   } else {
