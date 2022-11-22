@@ -24,23 +24,28 @@ connection.once("open", () => {
 
 app.use(express.static(path.join(__dirname, "/../build")));
 
-// app.use(cors({ origin: "*", credentials: true }));
 app.use(
-  (req, res, next) => {
-    console.log("CORS");
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://tastable.netlify.app"
-    );
-    next();
-  },
   cors({
     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
     credentials: true,
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
   })
 );
+// app.use(
+//   (req, res, next) => {
+//     console.log("CORS");
+//     res.setHeader(
+//       "Access-Control-Allow-Origin",
+//       "https://tastable.netlify.app"
+//     );
+//     next();
+//   },
+//   cors({
+//     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
+//     credentials: true,
+//     preflightContinue: false,
+//     optionsSuccessStatus: 204,
+//   })
+// );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -73,7 +78,7 @@ const authRouter = require("./routes/auth");
 // Access-Control-Expose-Headers: Access-Control-Allow-Origin
 
 app.use((req, res, next) => {
-  console.log("Method is" + req.method);
+  console.log("Method is " + req.method);
   res.setHeader("Access-Control-Allow-Origin", "https://tastable.netlify.app");
   res.setHeader(
     "Access-Control-Allow-Methods",
