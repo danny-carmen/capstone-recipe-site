@@ -29,6 +29,7 @@ export default class App extends Component {
     axios
       .get("https://tastable-capstone.onrender.com/auth/checkLoginStatus", {
         withCredentials: true,
+        credentials: "include",
       })
       .then((res) => {
         console.log("From check Login status", res);
