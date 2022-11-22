@@ -88,7 +88,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token, Authorization"
   );
-  res.res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Credentials", true);
   if (req.method == "OPTIONS") {
     console.log("OPTIONS");
     console.log(res.getHeader("Access-Control-Allow-Origin"));
