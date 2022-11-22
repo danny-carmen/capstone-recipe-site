@@ -24,28 +24,28 @@ connection.once("open", () => {
 
 app.use(express.static(path.join(__dirname, "/../build")));
 
-app.use(
-  cors({
-    origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
-    credentials: true,
-  })
-);
 // app.use(
-//   (req, res, next) => {
-//     console.log("CORS");
-//     res.setHeader(
-//       "Access-Control-Allow-Origin",
-//       "https://tastable.netlify.app"
-//     );
-//     next();
-//   },
 //   cors({
 //     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
 //     credentials: true,
-//     preflightContinue: false,
-//     optionsSuccessStatus: 204,
 //   })
 // );
+app.options(
+  (req, res, next) => {
+    console.log("CORS");
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      "https://tastable.netlify.app"
+    );
+    next();
+  },
+  cors({
+    origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
