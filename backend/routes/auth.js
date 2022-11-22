@@ -30,7 +30,7 @@ router.post("/login", function (req, res, next) {
       // console.log("Request Cookie " + req.headers.cookie);
       console.log("Response Headers ");
       console.log(res.getHeaders());
-
+      res.cookie("auth", user.token, { sameSite: "none", secure: "true" });
       return res.json({ validCredentials: true, user: user });
     }
   })(req, res, next);
