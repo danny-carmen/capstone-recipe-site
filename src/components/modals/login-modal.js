@@ -26,7 +26,7 @@ export default class LoginModal extends Component {
           username: this.state.loginEmail,
           password: this.state.loginPassword,
         },
-        { withCredentials: true, Content }
+        { withCredentials: true }
       )
       .then((res) => {
         if (res.data.validCredentials) {
