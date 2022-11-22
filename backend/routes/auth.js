@@ -27,7 +27,7 @@ router.post("/login", function (req, res, next) {
         }
       });
       user.isAuthenticated = true;
-
+      console.log(res.cookie);
       return res.json({ validCredentials: true });
     }
   })(req, res, next);
