@@ -27,8 +27,13 @@ router.post("/login", function (req, res, next) {
         }
       });
       user.isAuthenticated = true;
-      console.log("Session");
+      console.log("Session2");
       console.log(res.session);
+      res.cookie("test", "value", {
+        sameSite: "none",
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24,
+      });
       return res.json({ validCredentials: true });
     }
   })(req, res, next);
