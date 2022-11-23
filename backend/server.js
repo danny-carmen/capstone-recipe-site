@@ -59,8 +59,8 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
-    // cookie: { sameSite: "none", secure: true, maxAge: 1000 * 60 * 60 * 24 },
+    // cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { sameSite: "none", secure: true, maxAge: 1000 * 60 * 60 * 24 },
   })
 );
 
@@ -90,6 +90,7 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token, Authorization"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
   if (req.method == "OPTIONS") {
     console.log("OPTIONS");
     console.log(res.getHeader("Access-Control-Allow-Origin"));
