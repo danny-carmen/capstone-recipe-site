@@ -47,12 +47,12 @@ app.options(
   })
 );
 
-app.use(
-  cors({
-    origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://tastable.netlify.app/", "http://localhost:3000"],
+//     credentials: true,
+//   })
+// );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
